@@ -1,0 +1,21 @@
+.sn-tab-container {
+  flex: var(--grow, 0) var(--shrink, 0) var(--size, auto);
+  display: flex;
+  flex-direction: column;
+  background: var(--sn-primary-regular-bg-color);
+  color: var(--sn-primary-regular-text-color);
+  & > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  & > .contents {
+    padding: 10px;
+    flex: 1 1 auto;
+    display: flex;
+    background: var(--sn-primary-light-bg-color);
+    color: var(--sn-primary-light-text-color);
+  }
+}

@@ -1,0 +1,16 @@
+.sn-tab-item {
+  padding: 10px;
+  background: var(--sn-primary-dark-bg-color);
+  color: var(--sn-primary-dark-text-color);
+  cursor: pointer;
+  &.active {
+    cursor: default;
+    background: var(--sn-primary-light-bg-color);
+    color: var(--sn-primary-light-text-color);
+  }
+  &.disabled {
+    cursor: not-allowed;
+    background: var(--sn-disabled-bg-color);
+    color: var(--sn-disabled-text-color);
+  }
+}

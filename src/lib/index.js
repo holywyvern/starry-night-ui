@@ -23,6 +23,9 @@ import HorizontalLayout from "./components/HorizontalLayout";
 import List from "./components/List";
 import ListItem from "./components/ListItem";
 
+import TabContainer from "./components/TabContainer";
+import TabItem from "./components/TabItem";
+
 import Tree from "./components/Tree";
 import TreeNode from "./components/TreeNode";
 
@@ -50,6 +53,9 @@ export {
   /* Trees */
   Tree,
   TreeNode,
+  /* Tabs */
+  TabContainer,
+  TabItem,
   /* Layouts */
   LinearLayout,
   VerticalLayout,
@@ -80,6 +86,9 @@ export default {
   /* Trees */
   Tree,
   TreeNode,
+  /* Tabs */
+  TabContainer,
+  TabItem,
   /* Layouts */
   LinearLayout,
   VerticalLayout,

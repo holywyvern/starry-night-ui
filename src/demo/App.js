@@ -6,7 +6,9 @@ import {
   Panel,
   NavigationGroup,
   NavigationItem,
-  Separator
+  Separator,
+  TabContainer,
+  TabItem
 } from "../lib";
 
 const App = () => (
@@ -17,7 +19,17 @@ const App = () => (
       </NavigationGroup>
     </Navigation>
     <Separator />
-    <Panel vertical grow />
+    <Panel vertical grow>
+      <TabContainer>
+        <TabItem title="Tab 1">Tab 1</TabItem>
+        <TabItem title="Tab 2">Tab 2</TabItem>
+        <TabItem title="Tab 3">Tab 3</TabItem>
+        <TabItem title="Tab 4">Tab 4</TabItem>
+        <TabItem title="Tab 5" disabled>
+          Tab 5
+        </TabItem>
+      </TabContainer>
+    </Panel>
   </Container>
 );
 

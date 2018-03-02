@@ -4,6 +4,10 @@
   --sn-primary-light-bg-color: rgb(227, 239, 255);
   --sn-primary-light-text-color: black;
   --sn-primary-light-border-color: rgb(223, 232, 243);
+  /* Primary (regular) Colors */
+  --sn-primary-regular-bg-color: rgb(152, 178, 212);
+  --sn-primary-regular-text-color: black;
+  --sn-primary-regular-border-color: rgb(121, 148, 182);
   /* Primary (dark) Colors */
   --sn-primary-dark-bg-color: rgb(191, 219, 255);
   --sn-primary-dark-text-color: black;
@@ -15,7 +19,7 @@
   /* Disabled Colors */
   --sn-disabled-bg-color: rgb(64, 64, 128);
   --sn-disabled-border-color: black;
-  --sn-disabled-text-color: rgb(123, 132, 243);
+  --sn-disabled-text-color: rgb(157, 157, 158);
   /* Attributes */
   position: absolute;
   top: 0;
