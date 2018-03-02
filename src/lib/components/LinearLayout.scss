@@ -1,0 +1,28 @@
+.sn-linear-layout {
+  flex: var(--grow, 0) var(--shrink, 0) var(--size, auto);
+  display: flex;
+
+  .sn-separator {
+    border-right: 4px solid var(--sn-primary-light-border-color);
+  }
+
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+  &.vertical {
+    flex-direction: column;
+    &.reverse {
+      flex-direction: column-reverse;
+    }
+    .sn-separator {
+      border-right: none;
+      border-bottom: 4px solid var(--sn-primary-dark-border-color);
+    }
+  }
+  &.wrap {
+    flex-wrap: wrap;
+  }
+  &.reverse-wrap {
+    flex-wrap: wrap-reverse;
+  }
+}

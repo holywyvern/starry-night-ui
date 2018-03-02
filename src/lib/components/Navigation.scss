@@ -1,0 +1,29 @@
+.sn-navigation {
+  padding: 20px;
+  background: var(--sn-primary-dark-bg-color);
+  color: var(--sn-primary-dark-text-color);
+  & > ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  &.reverse > ul {
+    flex-direction: row-reverse;
+  }
+  &.vertical {
+    & > ul {
+      flex-direction: column;
+    }
+
+    &.reverse > ul {
+      flex-direction: column-reverse;
+    }
+  }
+  &.wrap > ul {
+    flex-wrap: wrap;
+  }
+  &.reverse-wrap > ul {
+    flex-wrap: wrap-reverse;
+  }
+}

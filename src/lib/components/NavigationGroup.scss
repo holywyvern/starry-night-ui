@@ -1,0 +1,16 @@
+.sn-navigation-group {
+  flex: var(--grow, 0) var(--shrink, 0) var(--size, auto);
+  & > .title {
+    font-weight: bolder;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+  }
+  & > ul {
+    margin: 0;
+    padding: 0;
+    padding-left: 15px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+}

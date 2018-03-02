@@ -1,0 +1,42 @@
+.sn-container {
+  /* Theme Variables */
+  /* Primary (light) Colors */
+  --sn-primary-light-bg-color: rgb(227, 239, 255);
+  --sn-primary-light-text-color: black;
+  --sn-primary-light-border-color: rgb(223, 232, 243);
+  /* Primary (dark) Colors */
+  --sn-primary-dark-bg-color: rgb(191, 219, 255);
+  --sn-primary-dark-text-color: black;
+  --sn-primary-dark-border-color: rgb(118, 161, 218);
+  /* Accent Colors */
+  --sn-accent-bg-color: rgb(3, 111, 219);
+  --sn-accent-border-color: rgb(3, 81, 189);
+  --sn-accent-text-color: white;
+  /* Disabled Colors */
+  --sn-disabled-bg-color: rgb(64, 64, 128);
+  --sn-disabled-border-color: black;
+  --sn-disabled-text-color: rgb(123, 132, 243);
+  /* Attributes */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  font-family: sans-serif;
+  display: flex;
+  background: var(--sn-primary-dark-bg-color);
+  color: var(--sn-primary-dark-text-color);
+  .sn-separator {
+    border-right: 4px solid var(--sn-primary-dark-border-color);
+  }
+  &.vertical {
+    .sn-separator {
+      border-right: none;
+      border-bottom: 4px solid var(--sn-primary-dark-border-color);
+    }
+    flex-direction: column;
+  }
+}

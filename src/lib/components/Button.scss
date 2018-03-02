@@ -1,0 +1,19 @@
+.sn-button {
+  flex: var(--grow, 0) var(--shrink, 0) var(--size, auto);
+  border: none;
+  background: var(--sn-primary-dark-bg-color);
+  color: var(--sn-primary-dark-text-color);
+  padding: 10px;
+  cursor: pointer;
+  &:hover,
+  &:active {
+    outline: 0;
+    background: var(--sn-selected-bg-color);
+    color: var(--sn-selected-text-color);
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background: var(--sn-disabled-bg-color);
+    color: var(--sn-disabled-text-color);
+  }
+}
