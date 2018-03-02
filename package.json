@@ -1,24 +1,30 @@
 {
-  "name": "create-react-library",
-  "version": "1.1.0",
-  "description": "React NPM library starter kit based on Facebook's create react app",
+  "name": "starry-night-ui",
+  "version": "1.0.0",
+  "description": "A React user interface for applications (Mostly Electron apps)",
   "main": "build/index.js",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "demo": "node scripts/demo.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build",
+    "build:all": "npm run build && npm run demo && npm run styleguide:build"
   },
+  "pre-commit": [
+    "build:all"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DimitriMikadze/create-react-library.git"
+    "url": "git+https://github.com/holywyvern/starry-night-ui.git"
   },
-  "author": "Dimitri Mikadze <dimitrimikadze@gmail.com>",
+  "author": "Ramiro Rojo <ramiro.rojo.cretta@gmail.com>",
   "bugs": {
-    "url": "https://github.com/DimitriMikadze/create-react-library/issues"
+    "url": "https://github.com/holywyvern/starry-night-ui.git/issues"
   },
-  "homepage": "https://github.com/DimitriMikadze/create-react-library#readme",
-  "license": "MIT",
+  "homepage": "https://github.com/holywyvern/starry-night-ui.git#readme",
+  "license": "Apache-2.0",
   "dependencies": {},
   "devDependencies": {
     "autoprefixer": "7.1.6",
@@ -45,14 +51,18 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "node-sass": "^4.7.2",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
+    "pre-commit": "^1.2.2",
     "promise": "8.0.1",
     "raf": "3.4.0",
     "react": "^16.2.0",
     "react-dev-utils": "^4.2.1",
     "react-dom": "^16.2.0",
+    "react-styleguidist": "^6.2.5",
+    "sass-loader": "^6.0.6",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
