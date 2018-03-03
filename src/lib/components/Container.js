@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import "./Container.scss";
+import OptionalScrollbar from "./OptionalScrollbar";
 
 /**
  * The Container is the main application viewport.
@@ -21,13 +22,19 @@ class Container extends Component {
     vertical: false,
     allowScroll: false
   };
+
   render() {
     const { children, vertical, allowScroll } = this.props;
     const classes = classNames("sn-container", {
-      vertical,
-      "allow-scroll": allowScroll
+      vertical
     });
-    return <div className={classes}>{children}</div>;
+    return (
+      <div className={classes}>
+        <OptionalScrollbar allowScroll={allowScroll}>
+          {children}
+        </OptionalScrollbar>
+      </div>
+    );
   }
 }
 

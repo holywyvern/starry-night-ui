@@ -11,7 +11,8 @@ class TabItem extends Component {
     active: PropTypes.bool,
     disabled: PropTypes.bool,
     onClick: PropTypes.func,
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
+    allowScroll: PropTypes.bool
   };
   static defaultProps = {
     active: false,

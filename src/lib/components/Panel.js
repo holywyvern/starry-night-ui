@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import classNames from "classnames";
 
+import OptionalScrollbar from "./OptionalScrollbar";
+
 import { addFlexPrefixIfNedded } from "../utils";
 
 import "./Panel.scss";
@@ -93,7 +95,6 @@ class Panel extends Component {
     const classes = classNames("sn-linear-layout", "sn-panel", {
       vertical,
       reverse,
-      "allow-scroll": allowScroll,
       wrap: wrap === true,
       "reverse-wrap": wrap === "reverse"
     });
@@ -108,9 +109,11 @@ class Panel extends Component {
       style.alignSelf = addFlexPrefixIfNedded(selfAlign);
     }
     return (
-      <div className={classes} style={style}>
-        {children}
-      </div>
+      <OptionalScrollbar allowScroll={allowScroll}>
+        <div className={classes} style={style}>
+          {children}
+        </div>
+      </OptionalScrollbar>
     );
   }
 }

@@ -53,14 +53,17 @@ class Button extends Component {
     /** Event called when the user clicks on the button */
     onClick: PropTypes.func,
     /** Checks if the button is disabled or not */
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    /** Indicates the align of the text inside the button */
+    textAlign: PropTypes.oneOf(["center", "end", "start", "right", "left"])
   };
   static defaultProps = {
     grow: false,
     shrink: false,
     submit: false,
     size: "auto",
-    type: "default"
+    type: "default",
+    textAlign: "center"
   };
 
   render() {
@@ -71,12 +74,14 @@ class Button extends Component {
       size,
       type,
       selfAlign,
+      textAlign,
       ...props
     } = this.props;
     const style = {
       "--grow": grow === true ? 1 : grow === false ? 0 : grow,
       "--shrink": shrink === true ? 1 : shrink === false ? 0 : shrink,
-      "--size": size
+      "--size": size,
+      textAlign
     };
     if (selfAlign) {
       style.alignSelf = addFlexPrefixIfNedded(selfAlign);

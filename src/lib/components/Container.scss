@@ -72,14 +72,20 @@ $sn-disabled-bg-color: rgb(64, 64, 128);
   & > .sn-separator {
     border-right: 4px solid var(--sn-primary-dark-border-color);
   }
+  & > .scrollbar-container {
+    flex: 1;
+    display: flex;
+    height: auto;
+  }
+
   &.vertical {
     & > .sn-separator {
       border-right: none;
       border-bottom: 4px solid var(--sn-primary-dark-border-color);
     }
     flex-direction: column;
-  }
-  &.allow-scroll {
-    overflow: auto;
+    & > .scrollbar-container {
+      flex-direction: column;
+    }
   }
 }

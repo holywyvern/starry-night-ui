@@ -1,4 +1,6 @@
 .sn-tab-item {
+  flex: 0 0 auto;
+  overflow: hidden;
   background: var(--sn-primary-dark-bg-gradient);
   color: var(--sn-primary-dark-text-color);
   cursor: pointer;

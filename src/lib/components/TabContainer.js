@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { addFlexPrefixIfNedded } from "../utils";
 
 import "./TabContainer.scss";
+import OptionalScrollbar from "./OptionalScrollbar";
 
 class TabContainer extends Component {
   static propTypes = {
@@ -87,8 +88,15 @@ class TabContainer extends Component {
     return (
       <div className="sn-tab-container">
         <div className="contents">
-          {React.isValidElement(current) && current.props.children}
+          <OptionalScrollbar
+            allowScroll={
+              React.isValidElement(current) && current.props.allowScroll
+            }
+          >
+            {React.isValidElement(current) && current.props.children}
+          </OptionalScrollbar>
         </div>
+
         <ul>
           {childrenList.map((child, index) => {
             if (React.isValidElement(child)) {

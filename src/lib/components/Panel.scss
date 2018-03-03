@@ -1,8 +1,18 @@
 .sn-panel {
+  flex: var(--grow, 0) var(--shrink, 0) var(--size, auto);
   background: var(--sn-primary-light-bg-gradient);
   color: var(--sn-primary-light-text-color);
-  overflow: hidden;
-  &.allow-scroll {
-    overflow: auto;
+
+  & > .scrollbar-container {
+    flex: var(--grow, 0) var(--shrink, 0) var(--size, auto);
+    display: flex;
+    height: auto;
+  }
+  &.vertical {
+    flex-direction: column;
+    & > .scrollbar-container {
+      flex-direction: column;
+      height: var(--size, auto);
+    }
   }
 }

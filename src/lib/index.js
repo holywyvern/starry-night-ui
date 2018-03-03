@@ -30,11 +30,20 @@ import TabItem from "./components/TabItem";
 import Tree from "./components/Tree";
 import TreeNode from "./components/TreeNode";
 
+import OptionalScrollbar from "./components/OptionalScrollbar";
+
+/* Dependencies */
+
+import PerfectScrollbar from "react-perfect-scrollbar";
+
+import "react-perfect-scrollbar/dist/css/styles.css";
+
 export {
   /* General elements */
   Separator,
   Button,
   ButtonGroup,
+  OptionalScrollbar,
   /* Containers */
   Container,
   Modal,
@@ -61,7 +70,9 @@ export {
   /* Layouts */
   LinearLayout,
   VerticalLayout,
-  HorizontalLayout
+  HorizontalLayout,
+  /** Vendor */
+  PerfectScrollbar
 };
 
 export default {
@@ -69,6 +80,7 @@ export default {
   Separator,
   Button,
   ButtonGroup,
+  OptionalScrollbar,
   /* Containers */
   Container,
   Modal,
@@ -95,5 +107,7 @@ export default {
   /* Layouts */
   LinearLayout,
   VerticalLayout,
-  HorizontalLayout
+  HorizontalLayout,
+  /** Vendor */
+  PerfectScrollbar
 };

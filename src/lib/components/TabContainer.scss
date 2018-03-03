@@ -14,15 +14,21 @@
     box-sizing: border-box;
   }
   & > .contents {
+    display: flex;
     box-sizing: border-box;
     padding: 10px;
     flex: 1 1 auto;
-    display: flex;
+    overflow: hidden;
     background: var(--sn-primary-light-bg-gradient);
     color: var(--sn-primary-light-text-color);
     border: 2px solid var(--sn-primary-light-border-color);
     border-bottom-color: var(--sn-primary-regular-border-color);
     border-right-color: var(--sn-primary-dark-border-color);
     box-shadow: 2px 2px 5px 0px var(--sn-shadow-color);
+    & > .scrollbar-container {
+      flex: 1 1 auto;
+      display: flex;
+      height: auto;
+    }
   }
 }
