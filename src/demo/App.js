@@ -22,6 +22,13 @@ const App = () => (
     </Navigation>
     <Separator />
     <Panel vertical grow>
+      <Navigation justify="end">
+        <NavigationItem href="./manual">Docs</NavigationItem>
+        <NavigationItem href="https://github.com/holywyvern/starry-night-ui">
+          Github
+        </NavigationItem>
+      </Navigation>
+      <Separator />
       <TabContainer onClose={console.log}>
         <TabItem title="Tab 1">Tab 1</TabItem>
         <TabItem title="Tab 2">Tab 2</TabItem>

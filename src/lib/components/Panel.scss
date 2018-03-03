@@ -6,14 +6,12 @@
     overflow: auto;
   }
   .sn-separator {
-    margin: 5px 10px;
     border-right: 2px solid var(--sn-primary-light-border-color);
   }
   &.vertical {
     .sn-separator {
       border-right: none;
       border-bottom: 2px solid var(--sn-primary-light-border-color);
-      margin: 10px 5px;
     }
   }
 }
