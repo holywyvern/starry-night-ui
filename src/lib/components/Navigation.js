@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Children } from "react";
 import PropTypes from "prop-types";
 
 import classNames from "classnames";
@@ -104,7 +104,31 @@ class Navigation extends Component {
     }
     return (
       <nav className={classes} style={style}>
-        <ul>{children}</ul>
+        <ul>
+          {Children.map(children, (child, index) => {
+            const style = {};
+            let grow, shrink, size;
+            if (React.isValidElement(child)) {
+              grow = child.props.grow;
+              shrink = child.props.shrink;
+              size = child.props.shrink;
+            }
+            if (typeof grow !== "undefined") {
+              style["--grow"] = grow === true ? 1 : grow;
+            }
+            if (typeof shrink !== "undefined") {
+              style["--shrink"] = shrink === true ? 1 : shrink;
+            }
+            if (typeof size !== "undefined") {
+              style["--size"] = size;
+            }
+            return (
+              <li style={style} key={index}>
+                {child}
+              </li>
+            );
+          })}
+        </ul>
       </nav>
     );
   }

@@ -69,11 +69,11 @@ $sn-disabled-bg-color: rgb(64, 64, 128);
   display: flex;
   background: var(--sn-primary-dark-bg-color);
   color: var(--sn-primary-dark-text-color);
-  .sn-separator {
+  & > .sn-separator {
     border-right: 4px solid var(--sn-primary-dark-border-color);
   }
   &.vertical {
-    .sn-separator {
+    & > .sn-separator {
       border-right: none;
       border-bottom: 4px solid var(--sn-primary-dark-border-color);
     }

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Children } from "react";
 import PropTypes from "prop-types";
 
 import { addFlexPrefixIfNedded } from "../utils";
@@ -54,10 +54,34 @@ class NavigationGroup extends Component {
     }
 
     return (
-      <li className="sn-navigation-group" style={style}>
+      <div className="sn-navigation-group" style={style}>
         {title && <div className="title">{title}</div>}
-        <ul>{children}</ul>
-      </li>
+        <ul>
+          {Children.map(children, (child, index) => {
+            const style = {};
+            let grow, shrink, size;
+            if (React.isValidElement(child)) {
+              grow = child.props.grow;
+              shrink = child.props.shrink;
+              size = child.props.shrink;
+            }
+            if (typeof grow !== "undefined") {
+              style["--grow"] = grow;
+            }
+            if (typeof shrink !== "undefined") {
+              style["--shrink"] = shrink;
+            }
+            if (typeof size !== "undefined") {
+              style["--size"] = size;
+            }
+            return (
+              <li style={style} key={index}>
+                {child}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     );
   }
 }

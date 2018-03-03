@@ -26,6 +26,11 @@ class LinearLayout extends Component {
      */
     shrink: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
     /**
+     * Initial size as a layout item.
+     * (only works when this layout is inside a linear layout)
+     */
+    size: PropTypes.string,
+    /**
      * Indicates how the current object must be aligned on its layout.
      * (only works when this layout is inside a linear layout)
      */
@@ -36,11 +41,7 @@ class LinearLayout extends Component {
       "end",
       "center"
     ]),
-    /**
-     * Initial size as a layout item.
-     * (only works when this layout is inside a linear layout)
-     */
-    size: PropTypes.string,
+
     /** Indicates if the layout is vertical, if false, it's horizontal */
     vertical: PropTypes.bool,
     /** Indicate if items must be reversed or not */
