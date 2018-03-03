@@ -1,19 +1,38 @@
 .sn-button {
   flex: var(--grow, 0) var(--shrink, 0) var(--size, auto);
-  border: none;
-  background: var(--sn-primary-dark-bg-color);
-  color: var(--sn-primary-dark-text-color);
+  border: 2px solid var(--sn-primary-light-border-color);
+  border-radius: 4px;
+  background: var(--sn-primary-light-bg-gradient);
+  color: var(--sn-primary-light-text-color);
   padding: 10px;
   cursor: pointer;
-  &:hover,
-  &:active {
+  display: flex;
+  box-sizing: border-box;
+  border-right-color: var(--sn-primary-dark-border-color);
+  border-bottom-color: var(--sn-primary-dark-border-color);
+  &:hover {
     outline: 0;
-    background: var(--sn-selected-bg-color);
-    color: var(--sn-selected-text-color);
+    border-color: var(--sn-primary-dark-border-color);
   }
+  &:active {
+    background: var(--sn-accent-bg-inverse-gradient);
+    border-color: var(--sn-accent-border-color);
+    color: var(--sn-accent-text-color);
+    box-shadow: none;
+  }
+
+  &:focus {
+    outline: 0;
+    border-color: var(--sn-accent-border-color);
+  }
+
   &:disabled {
     cursor: not-allowed;
+    border-color: var(--sn-disabled-border-color);
     background: var(--sn-disabled-bg-color);
     color: var(--sn-disabled-text-color);
+    opacity: 0.8;
   }
+  margin: 2px;
+  box-shadow: 2px 2px 5px 0px var(--sn-shadow-color);
 }

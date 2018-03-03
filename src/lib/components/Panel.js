@@ -59,7 +59,9 @@ class Panel extends Component {
      * Indicates if the items on the layout should wrap or not.
      * If value is "reverse" the wrap will be in reverse
      */
-    wrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(["reverse"])])
+    wrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(["reverse"])]),
+    /* If true, the panel will add scrollbars if needed, if not it will hide all overflowing content */
+    allowScroll: PropTypes.bool
   };
 
   static defaultProps = {
@@ -69,6 +71,7 @@ class Panel extends Component {
     vertical: false,
     reverse: false,
     wrap: false,
+    allowScroll: false,
     align: "stretch",
     justify: "start"
   };
@@ -84,11 +87,13 @@ class Panel extends Component {
       wrap,
       align,
       justify,
-      selfAlign
+      selfAlign,
+      allowScroll
     } = this.props;
     const classes = classNames("sn-linear-layout", "sn-panel", {
       vertical,
       reverse,
+      "allow-scroll": allowScroll,
       wrap: wrap === true,
       "reverse-wrap": wrap === "reverse"
     });

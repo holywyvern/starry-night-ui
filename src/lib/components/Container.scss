@@ -1,25 +1,61 @@
+$primary-light-bg-color: rgb(227, 239, 255);
+$primary-regular-bg-color: rgb(152, 178, 212);
+$primary-dark-bg-color: rgb(191, 219, 255);
+$accent-bg-color: rgb(3, 111, 219);
+$sn-disabled-bg-color: rgb(64, 64, 128);
+
 .sn-container {
   /* Theme Variables */
+  --sn-shadow-color: rgba(0, 0, 0, 0.5);
   /* Primary (light) Colors */
-  --sn-primary-light-bg-color: rgb(227, 239, 255);
+  --sn-primary-light-bg-color: $primary-light-bg-color;
+  --sn-primary-light-bg-color-end: darken($primary-light-bg-color, 10%);
   --sn-primary-light-text-color: black;
-  --sn-primary-light-border-color: rgb(223, 232, 243);
+  --sn-primary-light-border-color: darken($primary-light-bg-color, 20%);
+  --sn-primary-light-bg-gradient: linear-gradient(
+    var(--sn-primary-light-bg-color),
+    var(--sn-primary-light-bg-color-end)
+  );
   /* Primary (regular) Colors */
-  --sn-primary-regular-bg-color: rgb(152, 178, 212);
+  --sn-primary-regular-bg-color: $primary-regular-bg-color;
+  --sn-primary-regular-bg-color-end: darken($primary-regular-bg-color, 10%);
   --sn-primary-regular-text-color: black;
-  --sn-primary-regular-border-color: rgb(121, 148, 182);
+  --sn-primary-regular-border-color: darken($primary-regular-bg-color, 20%);
+  --sn-primary-regular-bg-gradient: linear-gradient(
+    var(--sn-primary-regular-bg-color),
+    var(--sn-primary-regular-bg-color-end)
+  );
   /* Primary (dark) Colors */
-  --sn-primary-dark-bg-color: rgb(191, 219, 255);
+  --sn-primary-dark-bg-color: $primary-dark-bg-color;
+  --sn-primary-dark-bg-color-end: darken($primary-dark-bg-color, 10%);
   --sn-primary-dark-text-color: black;
-  --sn-primary-dark-border-color: rgb(118, 161, 218);
+  --sn-primary-dark-border-color: darken($primary-dark-bg-color, 20%);
+  --sn-primary-dark-bg-gradient: linear-gradient(
+    var(--sn-primary-dark-bg-color),
+    var(--sn-primary-dark-bg-color-end)
+  );
   /* Accent Colors */
-  --sn-accent-bg-color: rgb(3, 111, 219);
-  --sn-accent-border-color: rgb(3, 81, 189);
+  --sn-accent-bg-color: $accent-bg-color;
+  --sn-accent-bg-color-end: darken($accent-bg-color, 10%);
+  --sn-accent-border-color: darken($accent-bg-color, 20%);
   --sn-accent-text-color: white;
+  --sn-accent-bg-gradient: linear-gradient(
+    var(--sn-accent-bg-color),
+    var(--sn-accent-bg-color-end)
+  );
+  --sn-accent-bg-inverse-gradient: linear-gradient(
+    var(--sn-accent-bg-color-end),
+    var(--sn-accent-bg-color)
+  );
   /* Disabled Colors */
-  --sn-disabled-bg-color: rgb(64, 64, 128);
-  --sn-disabled-border-color: black;
+  --sn-disabled-bg-color: $sn-disabled-bg-color;
+  --sn-disabled-bg-color-end: darken($sn-disabled-bg-color, 10%);
+  --sn-disabled-border-color: darken($sn-disabled-bg-color, 20%);
   --sn-disabled-text-color: rgb(157, 157, 158);
+  --sn-disabled-bg-gradient: linear-gradient(
+    var(--sn-disabled-bg-color),
+    var(--sn-disabled-bg-color-end)
+  );
   /* Attributes */
   position: absolute;
   top: 0;
@@ -28,7 +64,7 @@
   bottom: 0;
   margin: 0;
   padding: 0;
-  overflow: auto;
+  overflow: hidden;
   font-family: sans-serif;
   display: flex;
   background: var(--sn-primary-dark-bg-color);
@@ -42,5 +78,8 @@
       border-bottom: 4px solid var(--sn-primary-dark-border-color);
     }
     flex-direction: column;
+  }
+  &.allow-scroll {
+    overflow: auto;
   }
 }

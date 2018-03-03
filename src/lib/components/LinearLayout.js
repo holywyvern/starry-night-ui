@@ -63,7 +63,15 @@ class LinearLayout extends Component {
      * Indicates if the items on the layout should wrap or not.
      * If value is "reverse" the wrap will be in reverse
      */
-    wrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(["reverse"])])
+    wrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(["reverse"])]),
+    /**
+     * Indicates the padding of the element.
+     */
+    padding: PropTypes.string,
+    /**
+     * Indicates the margin of the element.
+     */
+    margin: PropTypes.string
   };
 
   static defaultProps = {
@@ -74,7 +82,9 @@ class LinearLayout extends Component {
     reverse: false,
     wrap: false,
     align: "stretch",
-    justify: "start"
+    justify: "start",
+    margin: "0",
+    padding: "0"
   };
 
   render() {
@@ -88,7 +98,9 @@ class LinearLayout extends Component {
       wrap,
       align,
       justify,
-      selfAlign
+      selfAlign,
+      margin,
+      padding
     } = this.props;
     const classes = classNames("sn-linear-layout", {
       vertical,
@@ -100,6 +112,8 @@ class LinearLayout extends Component {
       "--grow": grow === true ? 1 : grow === false ? 0 : grow,
       "--shrink": shrink === true ? 1 : shrink === false ? 0 : shrink,
       "--size": size,
+      margin,
+      padding,
       alignItems: addFlexPrefixIfNedded(align),
       justifyContent: addFlexPrefixIfNedded(justify)
     };

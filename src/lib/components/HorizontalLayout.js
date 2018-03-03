@@ -25,7 +25,16 @@ class HorizontalLayout extends Component {
      * Indicates if the items on the layout should wrap or not.
      * If value is "reverse" the wrap will be in reverse
      */
-    wrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(["reverse"])])
+    wrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(["reverse"])]),
+    /**
+     * Indicates the padding of the element.
+     */
+    padding: PropTypes.string,
+    /**
+     * Indicates the margin of the element.
+     */
+
+    margin: PropTypes.string
   };
 
   static defaultProps = {
@@ -33,7 +42,9 @@ class HorizontalLayout extends Component {
     grow: false,
     shrink: false,
     wrap: false,
-    size: "auto"
+    size: "auto",
+    padding: "0",
+    margin: "0"
   };
 
   render() {

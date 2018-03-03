@@ -63,7 +63,15 @@ class TabContainer extends Component {
   }
 
   render() {
-    const { grow, shrink, size, selfAlign, children, onSelect } = this.props;
+    const {
+      grow,
+      shrink,
+      size,
+      selfAlign,
+      children,
+      onSelect,
+      onClose
+    } = this.props;
     const { selected } = this.state;
     const style = {
       "--grow": grow === true ? 1 : grow === false ? 0 : grow,
@@ -78,19 +86,24 @@ class TabContainer extends Component {
     const current = childrenList[selected];
     return (
       <div className="sn-tab-container">
+        <div className="contents">
+          {React.isValidElement(current) && current.props.children}
+        </div>
         <ul>
           {childrenList.map((child, index) => {
             if (React.isValidElement(child)) {
               return React.cloneElement(child, {
                 active: selected === index,
-                onClick: () => realOnSelect(index)
+                onClick: () => realOnSelect(index),
+                onClose:
+                  typeof onClose === "function"
+                    ? () => onClose(index)
+                    : child.props.onClose
               });
             }
+            return null;
           })}
         </ul>
-        <div className="contents">
-          {React.isValidElement(current) && current.props.children}
-        </div>
       </div>
     );
   }

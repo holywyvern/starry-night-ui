@@ -10,21 +10,25 @@ class TabItem extends Component {
     title: PropTypes.node,
     active: PropTypes.bool,
     disabled: PropTypes.bool,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    onClose: PropTypes.func
   };
   static defaultProps = {
     active: false,
     disabled: false
   };
   render() {
-    const { title, active, disabled, onClick } = this.props;
+    const { title, active, disabled, onClick, onClose } = this.props;
     const classes = classNames("sn-tab-item", { active, disabled });
     return (
-      <li
-        onClick={!disabled && !active ? onClick : undefined}
-        className={classes}
-      >
-        {title}
+      <li className={classes}>
+        <div
+          className="label"
+          onClick={!disabled && !active ? onClick : undefined}
+        >
+          {title}
+        </div>
+        {onClose ? <button onClick={onClose}>&times;</button> : null}
       </li>
     );
   }

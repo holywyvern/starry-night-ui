@@ -2,13 +2,15 @@ import React from "react";
 
 import {
   Container,
+  HorizontalLayout,
   Navigation,
   Panel,
   NavigationGroup,
   NavigationItem,
   Separator,
   TabContainer,
-  TabItem
+  TabItem,
+  Button
 } from "../lib";
 
 const App = () => (
@@ -20,7 +22,7 @@ const App = () => (
     </Navigation>
     <Separator />
     <Panel vertical grow>
-      <TabContainer>
+      <TabContainer onClose={console.log}>
         <TabItem title="Tab 1">Tab 1</TabItem>
         <TabItem title="Tab 2">Tab 2</TabItem>
         <TabItem title="Tab 3">Tab 3</TabItem>
@@ -29,6 +31,11 @@ const App = () => (
           Tab 5
         </TabItem>
       </TabContainer>
+      <HorizontalLayout justify="end" padding="0 10px 10px 0">
+        <Button>Accept</Button>
+        <Button>Cancel</Button>
+        <Button disabled>Disabled</Button>
+      </HorizontalLayout>
     </Panel>
   </Container>
 );

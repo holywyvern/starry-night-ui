@@ -16,9 +16,10 @@ class NavigationItem extends Component {
   };
 
   render() {
+    const { children, ...props } = this.props;
     return (
       <li className="sn-navigation-item">
-        <a {...this.props} />
+        <a {...props}>{children}</a>
       </li>
     );
   }

@@ -1,6 +1,10 @@
 .sn-panel {
-  background: var(--sn-primary-light-bg-color);
+  background: var(--sn-primary-light-bg-gradient);
   color: var(--sn-primary-light-text-color);
+  overflow: hidden;
+  &.allow-scroll {
+    overflow: auto;
+  }
   .sn-separator {
     margin: 5px 10px;
     border-right: 2px solid var(--sn-primary-light-border-color);

@@ -13,14 +13,20 @@ import "./Container.scss";
 class Container extends Component {
   static propTypes = {
     /** Changes the direction from horizontal to vertical */
-    vertical: PropTypes.bool
+    vertical: PropTypes.bool,
+    /* If true, the panel will add scrollbars if needed, if not it will hide all overflowing content */
+    allowScroll: PropTypes.bool
   };
   static defaultProps = {
-    vertical: false
+    vertical: false,
+    allowScroll: false
   };
   render() {
-    const { children, vertical } = this.props;
-    const classes = classNames("sn-container", { vertical });
+    const { children, vertical, allowScroll } = this.props;
+    const classes = classNames("sn-container", {
+      vertical,
+      "allow-scroll": allowScroll
+    });
     return <div className={classes}>{children}</div>;
   }
 }
