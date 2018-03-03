@@ -1,4 +1,5 @@
 import Button from "./components/Button";
+import ButtonGroup from "./components/ButtonGroup";
 
 import Separator from "./components/Separator";
 
@@ -33,6 +34,7 @@ export {
   /* General elements */
   Separator,
   Button,
+  ButtonGroup,
   /* Containers */
   Container,
   Modal,
@@ -66,6 +68,7 @@ export default {
   /* General elements */
   Separator,
   Button,
+  ButtonGroup,
   /* Containers */
   Container,
   Modal,

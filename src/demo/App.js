@@ -11,6 +11,7 @@ import {
   TabContainer,
   TabItem,
   Button,
+  ButtonGroup,
   Modal
 } from "../lib";
 
@@ -49,7 +50,16 @@ class App extends Component {
           <Separator />
           <Panel vertical grow>
             <TabContainer onClose={console.log}>
-              <TabItem title="Tab 1">Tab 1</TabItem>
+              <TabItem title="Tab 1">
+                Tab 1
+                <ButtonGroup vertical>
+                  <Button>This</Button>
+                  <Button>Is</Button>
+                  <Button disabled>A</Button>
+                  <Button>Vertical</Button>
+                  <Button>Group</Button>
+                </ButtonGroup>
+              </TabItem>
               <TabItem title="Tab 2">Tab 2</TabItem>
               <TabItem title="Tab 3">Tab 3</TabItem>
               <TabItem title="Tab 4">Tab 4</TabItem>
@@ -58,6 +68,12 @@ class App extends Component {
               </TabItem>
             </TabContainer>
             <HorizontalLayout justify="end" padding="0 10px 10px 0">
+              <ButtonGroup>
+                <Button>This</Button>
+                <Button>Is</Button>
+                <Button disabled>A</Button>
+                <Button>Group</Button>
+              </ButtonGroup>
               <Button>Accept</Button>
               <Button>Cancel</Button>
               <Button disabled>Disabled</Button>

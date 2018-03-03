@@ -23,7 +23,7 @@ class Modal extends Component {
     /**
      * Indicates than clicking on the background will do the same as the close action.
      */
-    closeOnBackgroundClick: PropTypes.func,
+    closeOnBackgroundClick: PropTypes.bool,
     /** Indicates the body of the modal is oriented vertically instead of horizontally */
     vertical: PropTypes.bool
   };

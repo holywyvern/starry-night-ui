@@ -1,6 +1,4 @@
 .sn-tab-item {
-  padding: 10px;
-  padding-bottom: 0;
   background: var(--sn-primary-dark-bg-gradient);
   color: var(--sn-primary-dark-text-color);
   cursor: pointer;
@@ -8,17 +6,18 @@
   transform: translateY(2px);
   display: flex;
   align-items: center;
-  border-radius: 5px 5px 0 0;
+
   & > .label {
     flex: 1;
     display: flex;
+    padding: 5px;
   }
   & > button {
     background: transparent;
     border: none;
     font-weight: bolder;
     color: var(--sn-primary-dark-text-color);
-    padding: 2px;
+    padding: 5px;
     font-size: 1.3em;
     opacity: 0;
     transition: all 100ms ease-in;

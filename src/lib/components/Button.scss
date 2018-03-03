@@ -10,6 +10,7 @@
   box-sizing: border-box;
   border-right-color: var(--sn-primary-dark-border-color);
   border-bottom-color: var(--sn-primary-dark-border-color);
+  transition: all 100ms ease-in;
   &:hover {
     outline: 0;
     border-color: var(--sn-primary-dark-border-color);
@@ -18,7 +19,8 @@
     background: var(--sn-accent-bg-inverse-gradient);
     border-color: var(--sn-accent-border-color);
     color: var(--sn-accent-text-color);
-    box-shadow: none;
+    box-shadow: inset 2px 2px 5px 0px var(--sn-shadow-color);
+    transition: all 100ms ease-out;
   }
 
   &:focus {
@@ -32,6 +34,7 @@
     background: var(--sn-disabled-bg-color);
     color: var(--sn-disabled-text-color);
     opacity: 0.8;
+    box-shadow: inset 2px 2px 5px 0px var(--sn-shadow-color);
   }
   margin: 2px;
   box-shadow: 2px 2px 5px 0px var(--sn-shadow-color);
