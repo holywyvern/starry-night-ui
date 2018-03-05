@@ -49,7 +49,7 @@ class App extends Component {
           </Navigation>
           <Separator />
           <Panel vertical grow>
-            <TabContainer onClose={console.log}>
+            <TabContainer onClose={console.log} grow shrink>
               <TabItem title="Tab 1" allowScroll>
                 Tab 1
                 <ButtonGroup vertical>

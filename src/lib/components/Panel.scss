@@ -1,7 +1,7 @@
 .sn-panel {
   background: var(--sn-primary-light-bg-gradient);
   color: var(--sn-primary-light-text-color);
-
+  display: flex;
   & > .scrollbar-container {
     display: flex;
     height: auto;

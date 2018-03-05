@@ -5,10 +5,11 @@ import classNames from "classnames";
 
 import OptionalScrollbar from "./OptionalScrollbar";
 
-import { addFlexPrefixIfNedded } from "../utils";
+import LinearLayout from "./LinearLayout";
+
+import layoutElement from "./layoutElement";
 
 import "./Panel.scss";
-import layoutElement from "./layoutElement";
 
 class Panel extends Component {
   static propTypes = {
@@ -49,35 +50,14 @@ class Panel extends Component {
   };
 
   render() {
-    const {
-      children,
-      vertical,
-      reverse,
-      wrap,
-      align,
-      justify,
-      allowScroll,
-      style
-    } = this.props;
-    const classes = classNames("sn-linear-layout", "sn-panel", {
-      vertical,
-      reverse,
-      wrap: wrap === true,
-      "reverse-wrap": wrap === "reverse"
-    });
-    const newStyle = {
-      ...style,
-      alignItems: addFlexPrefixIfNedded(align),
-      justifyContent: addFlexPrefixIfNedded(justify)
-    };
+    const { allowScroll, ...props } = this.props;
+
     return (
-      <OptionalScrollbar allowScroll={allowScroll} style={newStyle}>
-        <div className={classes} style={newStyle}>
-          {children}
-        </div>
+      <OptionalScrollbar allowScroll={allowScroll}>
+        <LinearLayout {...props} grow shrink className="sn-panel" />
       </OptionalScrollbar>
     );
   }
 }
 
-export default layoutElement(Panel, { grow: 1, shrink: 1 });
+export default layoutElement(Panel);
