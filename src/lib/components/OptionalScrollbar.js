@@ -10,16 +10,19 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 class OptionalScrollbar extends Component {
   static propTypes = {
     /** If true, it will allow elements to be scrolled */
-    allowScroll: PropTypes.bool
+    allowScroll: PropTypes.bool,
+    style: PropTypes.object
   };
 
   static defaultProps = {
-    allowScroll: false
+    allowScroll: false,
+    style: {}
   };
 
   render() {
-    const { allowScroll, children } = this.props;
-    if (allowScroll) return <PerfectScrollbar>{children}</PerfectScrollbar>;
+    const { allowScroll, children, style } = this.props;
+    if (allowScroll)
+      return <PerfectScrollbar style={style}>{children}</PerfectScrollbar>;
     return children;
   }
 }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
-import { addFlexPrefixIfNedded } from "../utils";
+import layoutElement from "./layoutElement";
 
 import "./Button.scss";
 
@@ -11,34 +11,6 @@ import "./Button.scss";
  */
 class Button extends Component {
   static propTypes = {
-    /**
-     * Indicates if the current item must expand.
-     * If grow is a number, it means wich ratio it is expanded.
-     * (only works when this layout is inside a linear layout)
-     */
-    grow: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
-    /**
-     * Indicates if the current item must shrink.
-     * Tf shrink is a number, it means wich ratio it is shrinked.
-     * (only works when this layout is inside a linear layout)
-     */
-    shrink: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
-    /**
-     * Initial size as a layout item.
-     * (only works when this layout is inside a linear layout)
-     */
-    size: PropTypes.string,
-    /**
-     * Indicates how the current object must be aligned on its layout.
-     * (only works when this layout is inside a linear layout)
-     */
-    selfAlign: PropTypes.oneOf([
-      "baseline",
-      "stretch",
-      "start",
-      "end",
-      "center"
-    ]),
     /**
      * Indicates if the button is meant to be a submit button for a form
      */
@@ -58,34 +30,26 @@ class Button extends Component {
     textAlign: PropTypes.oneOf(["center", "end", "start", "right", "left"])
   };
   static defaultProps = {
-    grow: false,
-    shrink: false,
     submit: false,
-    size: "auto",
     type: "default",
     textAlign: "center"
   };
 
   render() {
     const {
-      grow,
-      shrink,
       submit,
-      size,
       type,
-      selfAlign,
       textAlign,
+      row,
+      column,
+      area,
+      style,
       ...props
     } = this.props;
-    const style = {
-      "--grow": grow === true ? 1 : grow === false ? 0 : grow,
-      "--shrink": shrink === true ? 1 : shrink === false ? 0 : shrink,
-      "--size": size,
+    const newStyle = {
+      ...style,
       textAlign
     };
-    if (selfAlign) {
-      style.alignSelf = addFlexPrefixIfNedded(selfAlign);
-    }
     const classes = classNames("sn-button", {
       primary: type === "primary",
       accent: type === "accent"
@@ -95,10 +59,10 @@ class Button extends Component {
         {...props}
         type={submit ? "submit" : "button"}
         className={classes}
-        style={style}
+        style={newStyle}
       />
     );
   }
 }
 
-export default Button;
+export default layoutElement(Button);

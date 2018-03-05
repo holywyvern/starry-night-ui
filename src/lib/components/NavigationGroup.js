@@ -1,9 +1,8 @@
 import React, { Component, Children } from "react";
 import PropTypes from "prop-types";
 
-import { addFlexPrefixIfNedded } from "../utils";
-
 import "./NavigationGroup.scss";
+import layoutElement from "./layoutElement";
 
 class NavigationGroup extends Component {
   static propTypes = {
@@ -43,37 +42,12 @@ class NavigationGroup extends Component {
     size: "auto"
   };
   render() {
-    const { grow, shrink, size, selfAlign, children, title } = this.props;
-    const style = {
-      "--grow": grow === true ? 1 : grow === false ? 0 : grow,
-      "--shrink": shrink === true ? 1 : shrink === false ? 0 : shrink,
-      "--size": size
-    };
-    if (selfAlign) {
-      style.alignSelf = addFlexPrefixIfNedded(selfAlign);
-    }
-
+    const { style, children, title } = this.props;
     return (
       <div className="sn-navigation-group" style={style}>
         {title && <div className="title">{title}</div>}
         <ul>
           {Children.map(children, (child, index) => {
-            const style = {};
-            let grow, shrink, size;
-            if (React.isValidElement(child)) {
-              grow = child.props.grow;
-              shrink = child.props.shrink;
-              size = child.props.shrink;
-            }
-            if (typeof grow !== "undefined") {
-              style["--grow"] = grow;
-            }
-            if (typeof shrink !== "undefined") {
-              style["--shrink"] = shrink;
-            }
-            if (typeof size !== "undefined") {
-              style["--size"] = size;
-            }
             return (
               <li style={style} key={index}>
                 {child}
@@ -86,4 +60,4 @@ class NavigationGroup extends Component {
   }
 }
 
-export default NavigationGroup;
+export default layoutElement(NavigationGroup);

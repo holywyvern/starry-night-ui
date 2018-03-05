@@ -1,10 +1,9 @@
 import React, { Component, Children } from "react";
 import PropTypes from "prop-types";
 
-import { addFlexPrefixIfNedded } from "../utils";
-
 import "./TabContainer.scss";
 import OptionalScrollbar from "./OptionalScrollbar";
+import layoutElement from "./layoutElement";
 
 class TabContainer extends Component {
   static propTypes = {
@@ -39,7 +38,47 @@ class TabContainer extends Component {
     /** Index of the currently selected tab */
     selected: PropTypes.number,
     /** Callback when an user selects a tab */
-    onSelect: PropTypes.func
+    onSelect: PropTypes.func,
+    /**
+     * If placed on a grid, indicates the current grid rowspan
+     */
+    row: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.shape({
+        start: PropTypes.string.isRequired,
+        end: PropTypes.string.isRequired
+      })
+    ]),
+    /**
+     * If placed on a grid, indicates the current grid colspan
+     */
+
+    column: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.shape({
+        start: PropTypes.string.isRequired,
+        end: PropTypes.string.isRequired
+      })
+    ]),
+    /**
+     * If placed on a grid, indicates the current grid area
+     */
+
+    area: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        row: PropTypes.shape({
+          start: PropTypes.string.isRequired,
+          end: PropTypes.string.isRequired
+        }).isRequired,
+        column: PropTypes.shape({
+          start: PropTypes.string.isRequired,
+          end: PropTypes.string.isRequired
+        }).isRequired
+      })
+    ])
   };
   static defaultProps = {
     grow: false,
@@ -64,29 +103,13 @@ class TabContainer extends Component {
   }
 
   render() {
-    const {
-      grow,
-      shrink,
-      size,
-      selfAlign,
-      children,
-      onSelect,
-      onClose
-    } = this.props;
+    const { style, children, onSelect, onClose } = this.props;
     const { selected } = this.state;
-    const style = {
-      "--grow": grow === true ? 1 : grow === false ? 0 : grow,
-      "--shrink": shrink === true ? 1 : shrink === false ? 0 : shrink,
-      "--size": size
-    };
-    if (selfAlign) {
-      style.alignSelf = addFlexPrefixIfNedded(selfAlign);
-    }
     const realOnSelect = onSelect || this.onSelect;
     const childrenList = Children.toArray(children);
     const current = childrenList[selected];
     return (
-      <div className="sn-tab-container">
+      <div className="sn-tab-container" style={style}>
         <div className="contents">
           <OptionalScrollbar
             allowScroll={
@@ -117,4 +140,4 @@ class TabContainer extends Component {
   }
 }
 
-export default TabContainer;
+export default layoutElement(TabContainer, { grow: true, shrink: true });

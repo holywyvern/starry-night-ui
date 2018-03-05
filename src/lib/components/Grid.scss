@@ -1,0 +1,9 @@
+.sn-grid {
+  display: grid;
+  &.inline {
+    display: inline-grid;
+  }
+  &.partial {
+    display: subgrid;
+  }
+}

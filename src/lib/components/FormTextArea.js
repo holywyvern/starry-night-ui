@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
-import { addFlexPrefixIfNedded } from "../utils";
+import layoutElement from "./layoutElement";
 
 class FormTextArea extends Component {
   static propTypes = {
@@ -32,6 +31,46 @@ class FormTextArea extends Component {
       "start",
       "end",
       "center"
+    ]),
+    /**
+     * If placed on a grid, indicates the current grid rowspan
+     */
+    row: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.shape({
+        start: PropTypes.string.isRequired,
+        end: PropTypes.string.isRequired
+      })
+    ]),
+    /**
+     * If placed on a grid, indicates the current grid colspan
+     */
+
+    column: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.shape({
+        start: PropTypes.string.isRequired,
+        end: PropTypes.string.isRequired
+      })
+    ]),
+    /**
+     * If placed on a grid, indicates the current grid area
+     */
+
+    area: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        row: PropTypes.shape({
+          start: PropTypes.string.isRequired,
+          end: PropTypes.string.isRequired
+        }).isRequired,
+        column: PropTypes.shape({
+          start: PropTypes.string.isRequired,
+          end: PropTypes.string.isRequired
+        }).isRequired
+      })
     ])
   };
   static defaultProps = {
@@ -40,17 +79,9 @@ class FormTextArea extends Component {
     size: "auto"
   };
   render() {
-    const { grow, shrink, size, selfAlign } = this.props;
-    const style = {
-      "--grow": grow === true ? 1 : grow === false ? 0 : grow,
-      "--shrink": shrink === true ? 1 : shrink === false ? 0 : shrink,
-      "--size": size
-    };
-    if (selfAlign) {
-      style.alignSelf = addFlexPrefixIfNedded(selfAlign);
-    }
-    return null;
+    const { style } = this.props;
+    return <textarea style={style} className="sn-input sn-textarea" />;
   }
 }
 
-export default FormTextArea;
+export default layoutElement(FormTextArea);

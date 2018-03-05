@@ -1,5 +1,4 @@
 .sn-button-group {
-  flex: var(--grow, 0) var(--shrink, 0) var(--size, auto);
   display: flex;
   &:not(.vertical) {
     & > .sn-button:not(:focus):not(:disabled):not(:active):not(:hover) {

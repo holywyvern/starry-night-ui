@@ -1,5 +1,4 @@
 .sn-linear-layout {
-  flex: var(--grow, 0) var(--shrink, 0) var(--size, auto);
   display: flex;
 
   & > .sn-separator {

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import "./NavigationItem.scss";
+import layoutElement from "./layoutElement";
 
 class NavigationItem extends Component {
   static propTypes = {
@@ -42,4 +43,4 @@ class NavigationItem extends Component {
   }
 }
 
-export default NavigationItem;
+export default layoutElement(NavigationItem);

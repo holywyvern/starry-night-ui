@@ -32,6 +32,8 @@ import TreeNode from "./components/TreeNode";
 
 import OptionalScrollbar from "./components/OptionalScrollbar";
 
+import layoutElement from "./components/layoutElement";
+
 /* Dependencies */
 
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -39,6 +41,8 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
 export {
+  /* Higher Order Components */
+  layoutElement,
   /* General elements */
   Separator,
   Button,
@@ -76,6 +80,8 @@ export {
 };
 
 export default {
+  /* Higher Order Components */
+  layoutElement,
   /* General elements */
   Separator,
   Button,
