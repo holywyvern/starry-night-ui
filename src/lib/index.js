@@ -19,6 +19,7 @@ import FormPasswordInput from "./components/FormPasswordInput";
 import FormSelectInput from "./components/FormSelectInput";
 import FormTextArea from "./components/FormTextArea";
 import FormTextInput from "./components/FormTextInput";
+import FormCheckbox from "./components/FormCheckbox";
 
 import LinearLayout from "./components/LinearLayout";
 import VerticalLayout from "./components/VerticalLayout";
@@ -68,6 +69,7 @@ export {
   FormNumberInput,
   FormSelectInput,
   FormTextArea,
+  FormCheckbox,
   /* Lists */
   List,
   ListItem,
@@ -110,6 +112,7 @@ export default {
   FormNumberInput,
   FormSelectInput,
   FormTextArea,
+  FormCheckbox,
   /* Lists */
   List,
   ListItem,

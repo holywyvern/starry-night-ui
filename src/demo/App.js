@@ -6,6 +6,7 @@ import {
   FormNumberInput,
   FormPasswordInput,
   FormSelectInput,
+  FormCheckbox,
   FormLabel,
   Container,
   HorizontalLayout,
@@ -66,7 +67,7 @@ class App extends Component {
                   <Button>Group</Button>
                 </ButtonGroup>
               </TabItem>
-              <TabItem title="Tab 2">
+              <TabItem title="Tab 2" allowScroll>
                 <Form onSubmit={e => e.preventDefault()}>
                   <FormLabel>Text:</FormLabel>
                   <FormTextInput />
@@ -86,6 +87,20 @@ class App extends Component {
                       { value: "2", label: "Item 2" }
                     ]}
                   />
+                  <FormLabel>Checkbox:</FormLabel>
+                  <FormCheckbox onChange={() => {}} checked={false}>
+                    I'm not Selected
+                  </FormCheckbox>
+                  <FormCheckbox checked onChange={() => {}}>
+                    But I am
+                  </FormCheckbox>
+                  <FormLabel>Disabled checkbox:</FormLabel>
+                  <FormCheckbox onChange={() => {}} disabled>
+                    But I'm disabled
+                  </FormCheckbox>
+                  <FormCheckbox checked onChange={() => {}} disabled>
+                    And I'm disabled too
+                  </FormCheckbox>
                 </Form>
               </TabItem>
               <TabItem title="Tab 3">Tab 3</TabItem>
