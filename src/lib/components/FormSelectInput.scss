@@ -4,18 +4,27 @@
     box-sizing: border-box;
     border-radius: 4px;
     box-sizing: border-box;
-    border: 4px solid transparent;
+    border: 2px solid var(--sn-primary-regular-border-color);
     color: var(--sn-primary-light-text-color);
+    transition: all 100ms ease-in;
+    background: linear-gradient(white, #eee);
   }
   &.is-focused {
     .Select-control {
       border-color: var(--sn-primary-dark-border-color);
+      transition: all 100ms ease-out;
+      background: linear-gradient(white, #eff);
     }
   }
   .Select-menu-outer {
     border-color: var(--sn-primary-dark-border-color);
-    border-width: 4px;
+    border-width: 2px;
     border-top: none;
     box-sizing: border-box;
+    width: calc(100% - 1px);
+    .Select-option.is-focused {
+      background: var(--sn-accent-bg-gradient);
+      color: var(--sn-accent-text-color);
+    }
   }
 }
