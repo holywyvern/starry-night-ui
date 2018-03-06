@@ -81,6 +81,7 @@ class App extends Component {
                   <FormNumberInput />
                   <FormLabel>Range:</FormLabel>
                   <FormNumberInput type="range" min={10} max={100} />
+                  <FormNumberInput type="range" min={10} max={100} disabled />
                   <FormSelectInput
                     options={[
                       { value: "1", label: "Item 1" },
