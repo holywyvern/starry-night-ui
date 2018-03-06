@@ -47,7 +47,12 @@ class LinearLayout extends Component {
     /**
      * Extra class names
      */
-    className: PropTypes.string
+    className: PropTypes.string,
+    /**
+     * Component class used for the grid element.
+     * Can be either an string or a React component class.
+     */
+    component: PropTypes.any
   };
 
   static defaultProps = {
@@ -57,7 +62,8 @@ class LinearLayout extends Component {
     align: "stretch",
     justify: "start",
     margin: "0",
-    padding: "0"
+    padding: "0",
+    component: "div"
   };
 
   _addFlexPrefixIfNedded(word) {
@@ -78,7 +84,9 @@ class LinearLayout extends Component {
       wrap,
       margin,
       padding,
-      className
+      className,
+      component,
+      ...props
     } = this.props;
     const classes = classNames(
       "sn-linear-layout",
@@ -97,11 +105,11 @@ class LinearLayout extends Component {
       alignItems: this._addFlexPrefixIfNedded(align),
       justifyContent: this._addFlexPrefixIfNedded(justify)
     };
-
+    const ComponentClass = component;
     return (
-      <div className={classes} style={newStyle}>
+      <ComponentClass {...props} className={classes} style={newStyle}>
         {children}
-      </div>
+      </ComponentClass>
     );
   }
 }

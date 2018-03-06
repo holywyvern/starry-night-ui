@@ -95,7 +95,16 @@ class Grid extends Component {
       "space-between",
       "space-evenly"
     ]),
-    flow: PropTypes.oneOf(["row", "column", "dense"])
+    /**
+     * Specifies how the grid flows with automatic placement.
+     * See grid flow CSS for more information.
+     */
+    flow: PropTypes.oneOf(["row", "column", "dense"]),
+    /**
+     * The wrapper component class.
+     * It can be an string, or a react component class
+     */
+    component: PropTypes.any
   };
 
   static defaultProps = {
@@ -105,7 +114,8 @@ class Grid extends Component {
     alignItems: "stretch",
     justifyContent: "stretch",
     alignContent: "start",
-    flow: "row"
+    flow: "row",
+    component: "div"
   };
 
   _buildTemplateElement(row) {
@@ -133,7 +143,9 @@ class Grid extends Component {
       alignContent,
       flow,
       auto,
-      className
+      className,
+      component,
+      ...props
     } = this.props;
     const classes = classNames(
       "sn-grid",
@@ -179,11 +191,11 @@ class Grid extends Component {
         newStyle.gridAutoColumns = this._buildTemplates(auto.columns);
       }
     }
-
+    const ComponentClass = component;
     return (
-      <div className={classes} style={newStyle}>
+      <ComponentClass {...props} className={classes} style={newStyle}>
         {children}
-      </div>
+      </ComponentClass>
     );
   }
 }

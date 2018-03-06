@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 
 import {
+  Form,
+  FormTextInput,
+  FormNumberInput,
+  FormPasswordInput,
+  FormSelectInput,
+  FormLabel,
   Container,
   HorizontalLayout,
   Navigation,
@@ -60,7 +66,28 @@ class App extends Component {
                   <Button>Group</Button>
                 </ButtonGroup>
               </TabItem>
-              <TabItem title="Tab 2">Tab 2</TabItem>
+              <TabItem title="Tab 2">
+                <Form onSubmit={e => e.preventDefault()}>
+                  <FormLabel>Text:</FormLabel>
+                  <FormTextInput />
+                  <FormLabel>Disabled:</FormLabel>
+                  <FormTextInput disabled defaultValue="Disabled Text" />
+                  <FormLabel>Password:</FormLabel>
+                  <FormPasswordInput />
+                  <FormLabel>Email:</FormLabel>
+                  <FormTextInput type="email" />
+                  <FormLabel>Number:</FormLabel>
+                  <FormNumberInput />
+                  <FormLabel>Range:</FormLabel>
+                  <FormNumberInput type="range" min={10} max={100} />
+                  <FormSelectInput
+                    options={[
+                      { value: "1", label: "Item 1" },
+                      { value: "2", label: "Item 2" }
+                    ]}
+                  />
+                </Form>
+              </TabItem>
               <TabItem title="Tab 3">Tab 3</TabItem>
               <TabItem title="Tab 4">Tab 4</TabItem>
               <TabItem title="Tab 5" disabled>

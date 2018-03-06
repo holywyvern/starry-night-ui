@@ -12,10 +12,13 @@ import NavigationGroup from "./components/NavigationGroup";
 import NavigationItem from "./components/NavigationItem";
 
 import Form from "./components/Form";
-import FormInput from "./components/FormInput";
+import FormHiddenInput from "./components/FormHiddenInput";
 import FormLabel from "./components/FormLabel";
-import FormSelect from "./components/FormSelect";
+import FormNumberInput from "./components/FormNumberInput";
+import FormPasswordInput from "./components/FormPasswordInput";
+import FormSelectInput from "./components/FormSelectInput";
 import FormTextArea from "./components/FormTextArea";
+import FormTextInput from "./components/FormTextInput";
 
 import LinearLayout from "./components/LinearLayout";
 import VerticalLayout from "./components/VerticalLayout";
@@ -58,9 +61,12 @@ export {
   NavigationItem,
   /* Forms */
   Form,
-  FormInput,
   FormLabel,
-  FormSelect,
+  FormTextInput,
+  FormPasswordInput,
+  FormHiddenInput,
+  FormNumberInput,
+  FormSelectInput,
   FormTextArea,
   /* Lists */
   List,
@@ -97,9 +103,12 @@ export default {
   NavigationItem,
   /* Forms */
   Form,
-  FormInput,
   FormLabel,
-  FormSelect,
+  FormTextInput,
+  FormPasswordInput,
+  FormHiddenInput,
+  FormNumberInput,
+  FormSelectInput,
   FormTextArea,
   /* Lists */
   List,

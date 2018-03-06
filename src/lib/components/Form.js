@@ -17,7 +17,7 @@ class Form extends Component {
   render() {
     const { children, onSubmit, style } = this.props;
     return (
-      <form onSubmit={onSubmit} style={style} className="sn-select">
+      <form onSubmit={onSubmit} style={style} className="sn-form">
         {children}
       </form>
     );

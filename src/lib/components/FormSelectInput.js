@@ -4,8 +4,10 @@ import PropTypes from "prop-types";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
 
-import "./FormSelect.scss";
 import layoutElement from "./layoutElement";
+
+import "./FormInput.scss";
+import "./FormSelectInput.scss";
 
 class FormSelect extends Component {
   static propTypes = {
@@ -54,13 +56,7 @@ class FormSelect extends Component {
       isLoading,
       valueRenderer
     };
-    return (
-      <Select
-        {...itemProps}
-        className="sn-form-input sn-select"
-        wrapperStyle={style}
-      />
-    );
+    return <Select {...itemProps} className="sn-select" wrapperStyle={style} />;
   }
 }
 
