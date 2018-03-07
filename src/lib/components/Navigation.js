@@ -1,10 +1,15 @@
 import React from "react";
 
-import "./Navigation.scss";
 import LinearLayout from "./LinearLayout";
 
-const Navigation = props => (
-  <LinearLayout padding="10px" {...props} className="sn-navigation" />
+import OptionalScrollbar from "./OptionalScrollbar";
+
+import "./Navigation.scss";
+
+const Navigation = ({ allowScroll, children, ...props }) => (
+  <LinearLayout padding="10px" {...props} className="sn-navigation">
+    <OptionalScrollbar allowScroll={allowScroll}>{children}</OptionalScrollbar>
+  </LinearLayout>
 );
 
 export default Navigation;

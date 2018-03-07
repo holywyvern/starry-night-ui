@@ -50,12 +50,14 @@ class Panel extends Component {
   };
 
   render() {
-    const { allowScroll, ...props } = this.props;
+    const { allowScroll, children, ...props } = this.props;
 
     return (
-      <OptionalScrollbar allowScroll={allowScroll}>
-        <LinearLayout {...props} grow shrink className="sn-panel" />
-      </OptionalScrollbar>
+      <LinearLayout {...props} grow shrink className="sn-panel">
+        <OptionalScrollbar allowScroll={allowScroll}>
+          {children}
+        </OptionalScrollbar>
+      </LinearLayout>
     );
   }
 }

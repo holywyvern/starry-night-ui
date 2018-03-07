@@ -25,6 +25,8 @@ import LinearLayout from "./components/LinearLayout";
 import VerticalLayout from "./components/VerticalLayout";
 import HorizontalLayout from "./components/HorizontalLayout";
 
+import Grid from "./components/Grid";
+
 import List from "./components/List";
 import ListItem from "./components/ListItem";
 
@@ -83,6 +85,7 @@ export {
   LinearLayout,
   VerticalLayout,
   HorizontalLayout,
+  Grid,
   /** Vendor */
   PerfectScrollbar
 };
@@ -126,6 +129,7 @@ export default {
   LinearLayout,
   VerticalLayout,
   HorizontalLayout,
+  Grid,
   /** Vendor */
   PerfectScrollbar
 };
