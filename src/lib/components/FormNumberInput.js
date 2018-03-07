@@ -16,6 +16,7 @@ class FormNumberInput extends Component {
      */
     onChange: PropTypes.func,
     disabled: PropTypes.bool,
+    required: PropTypes.bool,
     name: PropTypes.string,
     placeholder: PropTypes.string,
     defaultValue: PropTypes.string,

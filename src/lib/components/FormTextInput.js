@@ -19,6 +19,7 @@ class FormTextInput extends Component {
     name: PropTypes.string,
     placeholder: PropTypes.string,
     defaultValue: PropTypes.string,
+    required: PropTypes.bool,
     type: PropTypes.oneOf(["text", "email", "url", "tel"]),
     pattern: PropTypes.string
   };

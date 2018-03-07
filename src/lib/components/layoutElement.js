@@ -84,7 +84,7 @@ function layoutElement(ComponentClass, defaultProps = {}) {
       if (typeof column === "number") {
         style.gridColumn = `${column} / ${column + 1}`;
       } else if (typeof column === "string") {
-        style.gridColumn = row;
+        style.gridColumn = column;
       }
     }
 
@@ -99,13 +99,26 @@ function layoutElement(ComponentClass, defaultProps = {}) {
     }
   }
   hoistNonReactStatic(ComponentClass, LayoutElement);
-  return ({ grow, shrink, size, style, selfAlign, ...props }) => (
+  return ({
+    grow,
+    shrink,
+    size,
+    style,
+    selfAlign,
+    area,
+    row,
+    column,
+    ...props
+  }) => (
     <LayoutElement
       grow={grow}
       shrink={shrink}
       size={size}
       style={style}
       selfAlign={selfAlign}
+      area={area}
+      row={row}
+      column={column}
     >
       <ComponentClass {...props} />
     </LayoutElement>

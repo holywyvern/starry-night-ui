@@ -9,6 +9,7 @@ import {
   FormPasswordInput,
   FormSelectInput,
   FormCheckbox,
+  FormTextArea,
   FormLabel,
   Container,
   HorizontalLayout,
@@ -180,6 +181,7 @@ class App extends Component {
                 <FormNumberInput />
                 <FormLabel>Range:</FormLabel>
                 <FormNumberInput type="range" />
+                <FormTextArea column="1 / 5" />
               </Grid>
             </Form>
           </Panel>

@@ -190,3 +190,7 @@ $tumb-height: 24px;
   height: 26px;
   box-shadow: 1px 1px 4px 0px var(--sn-shadow-color);
 }
+
+.sn-textarea {
+  resize: none;
+}
