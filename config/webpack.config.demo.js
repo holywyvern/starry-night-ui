@@ -308,6 +308,32 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: `${paths.appPublic}/favicon.ico`, to: paths.appDemoBuild },
       { from: `${paths.appPublic}/manifest.json`, to: paths.appDemoBuild }
+    ]),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(
+          __dirname,
+          "..",
+          "node_modules",
+          "monaco-editor",
+          "min",
+          "vs"
+        ),
+        to: path.resolve(__dirname, "..", "vs")
+      }
+    ]),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(
+          __dirname,
+          "..",
+          "node_modules",
+          "monaco-editor",
+          "min",
+          "vs"
+        ),
+        to: path.resolve(__dirname, "..", "docs", "vs")
+      }
     ])
   ],
   // CRL: added externals block for library

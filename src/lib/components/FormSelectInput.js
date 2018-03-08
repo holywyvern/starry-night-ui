@@ -13,6 +13,7 @@ class FormSelect extends Component {
   static propTypes = {
     name: PropTypes.string,
     value: PropTypes.any,
+    defaultValue: PropTypes.any,
     removeSelected: PropTypes.bool,
     onChange: PropTypes.func,
     clearableValue: PropTypes.bool,
@@ -30,12 +31,32 @@ class FormSelect extends Component {
     isLoading: false,
     loadingPlaceholder: false
   };
+
+  constructor(props) {
+    super(props);
+    this.state = { value: props.defaultValue || props.value };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (typeof nextProps.value !== "undefined") {
+      this.setState({ value: nextProps.value });
+    }
+  }
+
+  onChange = value => {
+    const { onChange } = this.props;
+    if (typeof onChange === "function") {
+      onChange(value);
+    } else {
+      this.setState({ value });
+    }
+  };
+
   render() {
+    const { value } = this.state;
     const {
       name,
-      value,
       removeSelected,
-      onChange,
       clearableValue,
       autoload,
       loadOptions,
@@ -45,10 +66,11 @@ class FormSelect extends Component {
       style
     } = this.props;
     const itemProps = {
+      onChange: this.onChange,
       name,
       value,
       removeSelected,
-      onChange,
+
       clearableValue,
       autoload,
       loadOptions,

@@ -3,6 +3,17 @@
   align-items: center;
   padding: 10px;
   input {
+    position: relative;
+    &::after {
+      content: "";
+      font-size: 1.3em;
+      top: -10px;
+      left: 0;
+      position: absolute;
+      color: var(--sn-accent-text-color);
+      opacity: 0;
+      transition: all 100ms ease-in;
+    }
     border-radius: 2px;
     flex: 0;
     -webkit-appearance: none;
@@ -20,6 +31,10 @@
   input:checked {
     border: 2px solid var(--sn-primary-light-bg-color);
     background: var(--sn-primary-dark-border-color);
+    &::after {
+      content: "✔";
+      opacity: 1;
+    }
   }
   input:focus {
     outline: 0;

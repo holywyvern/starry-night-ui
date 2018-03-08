@@ -37,7 +37,25 @@ function layoutElement(ComponentClass, defaultProps = {}) {
         "center"
       ]),
       /** Extra styles into the object */
-      style: PropTypes.object
+      style: PropTypes.object,
+      padding: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          top: PropTypes.string,
+          left: PropTypes.string,
+          right: PropTypes.string,
+          bottom: PropTypes.string
+        })
+      ]),
+      margin: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          top: PropTypes.string,
+          left: PropTypes.string,
+          right: PropTypes.string,
+          bottom: PropTypes.string
+        })
+      ])
     };
 
     static defaultProps = {
@@ -88,11 +106,39 @@ function layoutElement(ComponentClass, defaultProps = {}) {
       }
     }
 
+    _makeMarginAndPadding(style) {
+      const { margin, padding } = this.props;
+      this._makeSpacingValue(style, margin, "margin");
+      this._makeSpacingValue(style, padding, "padding");
+    }
+
+    _makeSpacingValue(style, values, name) {
+      if (typeof values === "string") {
+        style[name] = values;
+        return;
+      }
+      if (values && typeof values === "object") {
+        if (typeof values.top === "string") {
+          style[name + "Top"] = values.top;
+        }
+        if (typeof values.left === "string") {
+          style[name + "Left"] = values.left;
+        }
+        if (typeof values.right === "string") {
+          style[name + "Right"] = values.right;
+        }
+        if (typeof values.bottom === "string") {
+          style[name + "Bottom"] = values.bottom;
+        }
+      }
+    }
+
     render() {
       const { children, style } = this.props;
       const newStyle = { ...style };
       this._makeFlexStyle(newStyle);
       this._makeGridStyle(newStyle);
+      this._makeMarginAndPadding(newStyle);
       return React.cloneElement(Children.only(children), {
         style: newStyle
       });
@@ -108,6 +154,8 @@ function layoutElement(ComponentClass, defaultProps = {}) {
     area,
     row,
     column,
+    padding,
+    margin,
     ...props
   }) => (
     <LayoutElement
@@ -119,6 +167,8 @@ function layoutElement(ComponentClass, defaultProps = {}) {
       area={area}
       row={row}
       column={column}
+      padding={padding}
+      margin={margin}
     >
       <ComponentClass {...props} />
     </LayoutElement>

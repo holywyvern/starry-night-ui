@@ -3,6 +3,7 @@
 const autoprefixer = require("autoprefixer");
 const path = require("path");
 const webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const eslintFormatter = require("react-dev-utils/eslintFormatter");
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
@@ -272,6 +273,19 @@ module.exports = {
     // It is absolutely essential that NODE_ENV was set to production here.
     // Otherwise React will be compiled in the very slow development mode.
     new webpack.DefinePlugin(env.stringified),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(
+          __dirname,
+          "..",
+          "node_modules",
+          "monaco-editor",
+          "min",
+          "vs"
+        ),
+        to: path.resolve(__dirname, "..", "vs")
+      }
+    ]),
     // Minify the code.
     new webpack.optimize.UglifyJsPlugin({
       compress: {

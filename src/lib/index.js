@@ -20,10 +20,13 @@ import FormSelectInput from "./components/FormSelectInput";
 import FormTextArea from "./components/FormTextArea";
 import FormTextInput from "./components/FormTextInput";
 import FormCheckbox from "./components/FormCheckbox";
+import FormRadio from "./components/FormRadio";
 
 import LinearLayout from "./components/LinearLayout";
 import VerticalLayout from "./components/VerticalLayout";
 import HorizontalLayout from "./components/HorizontalLayout";
+
+import SyntaxHighlighter from "./components/SyntaxHighlighter";
 
 import Grid from "./components/Grid";
 
@@ -72,6 +75,7 @@ export {
   FormSelectInput,
   FormTextArea,
   FormCheckbox,
+  FormRadio,
   /* Lists */
   List,
   ListItem,
@@ -87,7 +91,8 @@ export {
   HorizontalLayout,
   Grid,
   /** Vendor */
-  PerfectScrollbar
+  PerfectScrollbar,
+  SyntaxHighlighter
 };
 
 export default {
@@ -116,6 +121,7 @@ export default {
   FormSelectInput,
   FormTextArea,
   FormCheckbox,
+  FormRadio,
   /* Lists */
   List,
   ListItem,
@@ -131,5 +137,6 @@ export default {
   HorizontalLayout,
   Grid,
   /** Vendor */
-  PerfectScrollbar
+  PerfectScrollbar,
+  SyntaxHighlighter
 };
