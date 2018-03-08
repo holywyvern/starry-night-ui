@@ -28,7 +28,7 @@ class LinearLayout extends Component {
       "start",
       "end",
       "center",
-      "space-arround",
+      "space-around",
       "space-between"
     ]),
     /**
@@ -36,14 +36,6 @@ class LinearLayout extends Component {
      * If value is "reverse" the wrap will be in reverse
      */
     wrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(["reverse"])]),
-    /**
-     * Indicates the padding of the element.
-     */
-    padding: PropTypes.string,
-    /**
-     * Indicates the margin of the element.
-     */
-    margin: PropTypes.string,
     /**
      * Extra class names
      */
@@ -61,8 +53,6 @@ class LinearLayout extends Component {
     wrap: false,
     align: "stretch",
     justify: "start",
-    margin: "0",
-    padding: "0",
     component: "div"
   };
 
@@ -82,8 +72,6 @@ class LinearLayout extends Component {
       vertical,
       reverse,
       wrap,
-      margin,
-      padding,
       className,
       component,
       ...props
@@ -100,8 +88,6 @@ class LinearLayout extends Component {
     );
     const newStyle = {
       ...style,
-      margin,
-      padding,
       alignItems: this._addFlexPrefixIfNedded(align),
       justifyContent: this._addFlexPrefixIfNedded(justify)
     };

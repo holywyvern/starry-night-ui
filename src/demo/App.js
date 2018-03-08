@@ -6,6 +6,9 @@ import AppNavigation from "./components/AppNavigation";
 import Sidebar from "./components/Sidebar";
 import LayoutDemo from "./components/LayoutDemo";
 import FormDemo from "./components/FormDemo";
+import PanelDemo from "./components/PanelDemo";
+import ButtonDemo from "./components/ButtonDemo";
+import ModalDemo from "./components/ModalDemo";
 
 class App extends Component {
   render() {
@@ -18,8 +21,14 @@ class App extends Component {
           <Separator />
           <Panel vertical grow allowScroll padding="10px">
             <LayoutDemo />
-            <h3>Form:</h3>
+            <Separator />
+            <PanelDemo />
+            <Separator />
             <FormDemo />
+            <Separator />
+            <ButtonDemo />
+            <Separator />
+            <ModalDemo />
           </Panel>
         </Panel>
       </Container>

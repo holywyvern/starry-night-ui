@@ -33,6 +33,21 @@ const FormDemo = () => {
           <FormNumberInput />
           <FormLabel>Range:</FormLabel>
           <FormNumberInput type="range" />
+          <FormLabel>Select</FormLabel>
+          <FormSelectInput
+            options={[
+              { label: "Option 1", value: 1 },
+              { label: "Option 2", value: 2 }
+            ]}
+          />
+          <FormLabel>Disabled Select</FormLabel>
+          <FormSelectInput
+            disabled
+            options={[
+              { label: "Option 1", value: 1 },
+              { label: "Option 2", value: 2 }
+            ]}
+          />
           <FormTextArea column="1 / 5" />
           <FormLabel selfAlign="start" padding={{ top: "12px" }}>
             Checkboxes:

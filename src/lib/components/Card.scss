@@ -1,0 +1,18 @@
+.sn-card {
+  --p-z: calc(1px * var(--z, 0));
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 4px;
+  background: var(--sn-primary-dark-bg-gradient);
+  color: var(--sn-primary-dark-text-color);
+  border: 2px solid var(--sn-primary-dark-border-color);
+  margin: 10px;
+  transition: all 200ms ease-in;
+  box-shadow: var(--p-z) calc(var(--p-z) * 2) calc(var(--p-z) * 2) 0
+    var(--sn-shadow-color);
+  &.light {
+    background: var(--sn-primary-light-bg-gradient);
+    color: var(--sn-primary-light-text-color);
+    border-color: var(--sn-primary-light-border-color);
+  }
+}

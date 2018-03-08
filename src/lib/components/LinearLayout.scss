@@ -3,6 +3,7 @@
 
   & > .sn-separator {
     border-right: 4px solid var(--sn-primary-light-border-color);
+    align-self: stretch;
   }
 
   &.reverse {

@@ -5,11 +5,19 @@
   & > .scrollbar-container {
     display: flex;
     height: auto;
+    & > .sn-separator {
+      border-right: 4px solid var(--sn-primary-light-border-color);
+      align-self: stretch;
+    }
   }
   &.vertical {
     & > .scrollbar-container {
       flex-direction: column;
       height: var(flex-basis, auto);
+      & > .sn-separator {
+        border-right: none;
+        border-bottom: 4px solid var(--sn-primary-dark-border-color);
+      }
     }
   }
 }

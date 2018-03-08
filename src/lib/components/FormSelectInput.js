@@ -22,14 +22,16 @@ class FormSelect extends Component {
     options: PropTypes.array,
     isLoading: PropTypes.bool,
     valueRenderer: PropTypes.func,
-    loadingPlaceholder: PropTypes.node
+    loadingPlaceholder: PropTypes.node,
+    disabled: PropTypes.bool
   };
   static defaultProps = {
     removeSelected: false,
     clearableValue: false,
     autoload: false,
     isLoading: false,
-    loadingPlaceholder: false
+    loadingPlaceholder: false,
+    disabled: false
   };
 
   constructor(props) {
@@ -63,6 +65,7 @@ class FormSelect extends Component {
       options,
       isLoading,
       valueRenderer,
+      disabled,
       style
     } = this.props;
     const itemProps = {
@@ -70,7 +73,7 @@ class FormSelect extends Component {
       name,
       value,
       removeSelected,
-
+      disabled,
       clearableValue,
       autoload,
       loadOptions,

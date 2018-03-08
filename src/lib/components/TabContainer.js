@@ -11,49 +11,12 @@ class TabContainer extends Component {
     selected: PropTypes.number,
     /** Callback when an user selects a tab */
     onSelect: PropTypes.func,
-    /**
-     * If placed on a grid, indicates the current grid rowspan
-     */
-    row: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-      PropTypes.shape({
-        start: PropTypes.string.isRequired,
-        end: PropTypes.string.isRequired
-      })
-    ]),
-    /**
-     * If placed on a grid, indicates the current grid colspan
-     */
-
-    column: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-      PropTypes.shape({
-        start: PropTypes.string.isRequired,
-        end: PropTypes.string.isRequired
-      })
-    ]),
-    /**
-     * If placed on a grid, indicates the current grid area
-     */
-
-    area: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.shape({
-        row: PropTypes.shape({
-          start: PropTypes.string.isRequired,
-          end: PropTypes.string.isRequired
-        }).isRequired,
-        column: PropTypes.shape({
-          start: PropTypes.string.isRequired,
-          end: PropTypes.string.isRequired
-        }).isRequired
-      })
-    ])
+    /** Elevation of the element */
+    z: PropTypes.number
   };
   static defaultProps = {
-    selected: 0
+    selected: 0,
+    z: 2
   };
 
   constructor(props) {
@@ -72,13 +35,14 @@ class TabContainer extends Component {
   }
 
   render() {
-    const { style, children, onSelect, onClose } = this.props;
+    const { style, children, onSelect, onClose, z } = this.props;
     const { selected } = this.state;
     const realOnSelect = onSelect || this.onSelect;
     const childrenList = Children.toArray(children);
     const current = childrenList[selected];
+    const newStyle = { ...style, "--z": z };
     return (
-      <div className="sn-tab-container" style={style}>
+      <div className="sn-tab-container" style={newStyle}>
         <div className="contents">
           <OptionalScrollbar
             allowScroll={

@@ -8,12 +8,20 @@
     color: var(--sn-primary-light-text-color);
     transition: all 100ms ease-in;
     background: linear-gradient(white, #eee);
+    box-shadow: inset 1px 1px 2px 0px var(--sn-shadow-color);
   }
   &.is-focused {
     .Select-control {
       border-color: var(--sn-primary-dark-border-color);
       transition: all 100ms ease-out;
       background: linear-gradient(white, #eff);
+    }
+    &:not(.is-open) {
+      .Select-control {
+        transition: all 100ms ease-out;
+        box-shadow: inset 1px 1px 2px 0px var(--sn-shadow-color);
+        background: linear-gradient(white, #eff);
+      }
     }
   }
   .Select-menu-outer {
@@ -25,6 +33,17 @@
     .Select-option.is-focused {
       background: var(--sn-accent-bg-gradient);
       color: var(--sn-accent-text-color);
+    }
+  }
+  &.is-disabled {
+    .Select-control {
+      box-shadow: none;
+      cursor: not-allowed;
+      border-color: var(--sn-disabled-border-color);
+      background: var(--sn-disabled-bg-color);
+      color: var(--sn-disabled-text-color);
+      opacity: 0.5;
+      box-shadow: none;
     }
   }
 }

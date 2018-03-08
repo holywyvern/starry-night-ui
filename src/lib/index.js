@@ -6,6 +6,7 @@ import Separator from "./components/Separator";
 import Container from "./components/Container";
 import Modal from "./components/Modal";
 import Panel from "./components/Panel";
+import Card from "./components/Card";
 
 import Navigation from "./components/Navigation";
 import NavigationGroup from "./components/NavigationGroup";
@@ -61,6 +62,7 @@ export {
   Container,
   Modal,
   Panel,
+  Card,
   /* Navigation */
   Navigation,
   NavigationGroup,
