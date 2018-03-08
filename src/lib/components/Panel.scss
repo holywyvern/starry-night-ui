@@ -2,6 +2,7 @@
   background: var(--sn-primary-light-bg-gradient);
   color: var(--sn-primary-light-text-color);
   display: flex;
+  overflow: hidden;
   & > .scrollbar-container {
     display: flex;
     height: auto;

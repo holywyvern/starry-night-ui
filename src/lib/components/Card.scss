@@ -15,4 +15,8 @@
     color: var(--sn-primary-light-text-color);
     border-color: var(--sn-primary-light-border-color);
   }
+  & > .scrollbar-container {
+    display: flex;
+    height: auto;
+  }
 }
