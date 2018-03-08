@@ -34,6 +34,7 @@
       background: var(--sn-accent-bg-gradient);
       color: var(--sn-accent-text-color);
     }
+    z-index: calc(9000 * (1 + var(--z, 0)));
   }
   &.is-disabled {
     .Select-control {

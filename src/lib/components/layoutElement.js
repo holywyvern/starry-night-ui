@@ -141,7 +141,6 @@ function layoutElement(ComponentClass, defaultProps = {}) {
     _makeElevation(style) {
       const { z } = this.props;
       style["--z"] = z;
-      style.zIndex = z * 100;
     }
 
     render() {
