@@ -10,13 +10,10 @@ class TabContainer extends Component {
     /** Index of the currently selected tab */
     selected: PropTypes.number,
     /** Callback when an user selects a tab */
-    onSelect: PropTypes.func,
-    /** Elevation of the element */
-    z: PropTypes.number
+    onSelect: PropTypes.func
   };
   static defaultProps = {
-    selected: 0,
-    z: 2
+    selected: 0
   };
 
   constructor(props) {
@@ -35,14 +32,13 @@ class TabContainer extends Component {
   }
 
   render() {
-    const { style, children, onSelect, onClose, z } = this.props;
+    const { style, children, onSelect, onClose } = this.props;
     const { selected } = this.state;
     const realOnSelect = onSelect || this.onSelect;
     const childrenList = Children.toArray(children);
     const current = childrenList[selected];
-    const newStyle = { ...style, "--z": z };
     return (
-      <div className="sn-tab-container" style={newStyle}>
+      <div className="sn-tab-container" style={style}>
         <div className="contents">
           <OptionalScrollbar
             allowScroll={
@@ -73,4 +69,4 @@ class TabContainer extends Component {
   }
 }
 
-export default layoutElement(TabContainer);
+export default layoutElement(TabContainer, { z: 2 });

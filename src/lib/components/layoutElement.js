@@ -38,6 +38,7 @@ function layoutElement(ComponentClass, defaultProps = {}) {
       ]),
       /** Extra styles into the object */
       style: PropTypes.object,
+      /** Padding of the element */
       padding: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.shape({
@@ -47,6 +48,7 @@ function layoutElement(ComponentClass, defaultProps = {}) {
           bottom: PropTypes.string
         })
       ]),
+      /** Margin of the element */
       margin: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.shape({
@@ -55,7 +57,9 @@ function layoutElement(ComponentClass, defaultProps = {}) {
           right: PropTypes.string,
           bottom: PropTypes.string
         })
-      ])
+      ]),
+      /** If the element supports it, the height of the element */
+      z: PropTypes.number
     };
 
     static defaultProps = {
@@ -63,6 +67,7 @@ function layoutElement(ComponentClass, defaultProps = {}) {
       grow: false,
       shrink: false,
       size: "auto",
+      z: 0,
       ...defaultProps
     };
 
@@ -133,12 +138,19 @@ function layoutElement(ComponentClass, defaultProps = {}) {
       }
     }
 
+    _makeElevation(style) {
+      const { z } = this.props;
+      style["--z"] = z;
+      style.zIndex = z * 100;
+    }
+
     render() {
       const { children, style } = this.props;
       const newStyle = { ...style };
       this._makeFlexStyle(newStyle);
       this._makeGridStyle(newStyle);
       this._makeMarginAndPadding(newStyle);
+      this._makeElevation(newStyle);
       return React.cloneElement(Children.only(children), {
         style: newStyle
       });
@@ -156,6 +168,7 @@ function layoutElement(ComponentClass, defaultProps = {}) {
     column,
     padding,
     margin,
+    z,
     ...props
   }) => (
     <LayoutElement
@@ -169,6 +182,7 @@ function layoutElement(ComponentClass, defaultProps = {}) {
       column={column}
       padding={padding}
       margin={margin}
+      z={z}
     >
       <ComponentClass {...props} />
     </LayoutElement>

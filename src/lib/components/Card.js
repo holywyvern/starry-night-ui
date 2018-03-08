@@ -13,13 +13,11 @@ import "./Card.scss";
 class Card extends Component {
   static propTypes = {
     layout: PropTypes.oneOf(["vertical", "horizontal", "grid"]),
-    z: PropTypes.number,
     style: PropTypes.object,
     light: PropTypes.bool,
     allowScroll: PropTypes.bool
   };
   static defaultProps = {
-    z: 0,
     layout: "horizontal",
     style: {},
     light: false,
@@ -29,17 +27,12 @@ class Card extends Component {
   render() {
     const {
       style,
-      z,
       layout,
       light,
       children,
       allowScroll,
       ...props
     } = this.props;
-    const newStyle = {
-      ...style,
-      "--z": z
-    };
     let ComponentClass = HorizontalLayout;
     if (layout === "vertical") {
       ComponentClass = VerticalLayout;
@@ -52,7 +45,7 @@ class Card extends Component {
         padding="10px"
         margin="10px"
         {...props}
-        style={newStyle}
+        style={style}
         className={classes}
       >
         <OptionalScrollbar allowScroll={allowScroll}>

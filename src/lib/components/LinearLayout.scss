@@ -25,4 +25,7 @@
   &.reverse-wrap {
     flex-wrap: wrap-reverse;
   }
+  --p-z: calc(1px * var(--z, 0));
+  box-shadow: var(--p-z) calc(var(--p-z) * 2) calc(var(--p-z) * 2) 0
+    var(--sn-shadow-color);
 }

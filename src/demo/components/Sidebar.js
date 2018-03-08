@@ -4,7 +4,7 @@ import { Navigation, NavigationItem, NavigationGroup } from "../../lib";
 
 const Sidebar = () => {
   return (
-    <Navigation vertical allowScroll>
+    <Navigation vertical allowScroll z={2}>
       <NavigationGroup title="Layout Elements">
         <NavigationItem href="#container">Container</NavigationItem>
         <NavigationItem href="#linear-layout">LinearLayout</NavigationItem>

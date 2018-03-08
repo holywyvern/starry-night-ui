@@ -4,3 +4,10 @@
   background-attachment: fixed;
   background-size: cover;
 }
+
+.sn-navigation-wrapper {
+  & > .sn-separator,
+  &.vertical > .sn-separator {
+    border-color: var(--sn-primary-dark-border-color);
+  }
+}

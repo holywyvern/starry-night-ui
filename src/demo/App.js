@@ -15,10 +15,8 @@ class App extends Component {
     return (
       <Container vertical>
         <AppNavigation />
-        <Separator />
         <Panel grow>
           <Sidebar />
-          <Separator />
           <Panel vertical grow allowScroll padding="10px">
             <LayoutDemo />
             <Separator />
