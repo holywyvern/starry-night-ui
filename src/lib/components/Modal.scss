@@ -1,7 +1,8 @@
 .sn-modal-container {
+  order: 0;
   pointer-events: none;
   position: fixed;
-  z-index: 999999;
+  z-index: 99999999;
   top: 0;
   left: 0;
   right: 0;

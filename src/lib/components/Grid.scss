@@ -9,5 +9,5 @@
   --p-z: calc(1px * var(--z, 0));
   box-shadow: var(--p-z) calc(var(--p-z) * 2) calc(var(--p-z) * 2) 0
     var(--sn-shadow-color);
-  z-index: calc(100 * var(--z, 0));
+  //z-index: calc(100 * var(--z, 0));
 }

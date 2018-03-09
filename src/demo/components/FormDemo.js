@@ -11,6 +11,7 @@ import {
   FormNumberInput,
   FormCheckbox,
   FormSelectInput,
+  FormColorInput,
   FormRadio
 } from "../../lib";
 
@@ -47,6 +48,16 @@ const FormDemo = () => {
               { label: "Option 1", value: 1 },
               { label: "Option 2", value: 2 }
             ]}
+          />
+          <FormLabel>Color Inputs:</FormLabel>
+          <FormColorInput />
+          <FormColorInput
+            defaultValue={{ red: 128, green: 0, blue: 18, alpha: 60 }}
+            showAlpha
+          />
+          <FormColorInput
+            disabled
+            defaultValue={{ red: 18, green: 100, blue: 36 }}
           />
           <FormTextArea column="1 / 5" />
           <FormLabel selfAlign="start" padding={{ top: "12px" }}>

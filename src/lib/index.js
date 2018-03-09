@@ -22,6 +22,7 @@ import FormTextArea from "./components/FormTextArea";
 import FormTextInput from "./components/FormTextInput";
 import FormCheckbox from "./components/FormCheckbox";
 import FormRadio from "./components/FormRadio";
+import FormColorInput from "./components/FormColorInput";
 
 import LinearLayout from "./components/LinearLayout";
 import VerticalLayout from "./components/VerticalLayout";
@@ -78,6 +79,7 @@ export {
   FormTextArea,
   FormCheckbox,
   FormRadio,
+  FormColorInput,
   /* Lists */
   List,
   ListItem,
@@ -124,6 +126,7 @@ export default {
   FormTextArea,
   FormCheckbox,
   FormRadio,
+  FormColorInput,
   /* Lists */
   List,
   ListItem,

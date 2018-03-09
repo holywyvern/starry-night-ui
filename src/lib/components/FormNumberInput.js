@@ -10,7 +10,7 @@ class FormNumberInput extends Component {
     /**
      * The current input value
      */
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     /**
      * Value on change
      */
