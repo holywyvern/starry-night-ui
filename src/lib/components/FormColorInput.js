@@ -14,6 +14,98 @@ import layoutElement from "./layoutElement";
 
 import "./FormColorInput.scss";
 
+/**
+ * Converts an HSL color value to RGB. Conversion formula
+ * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
+ * Assumes hue is in the set of [0, 360], saturation, lightness and alpha are contained in the set [0, 100] and
+ * returns red, green and blue in the set [0, 255].
+ *
+ * @param   {{ hue: number, saturation: number, lightness: number, alpha?: number }} color The HSL color value.
+ * @return  {{ red: number, green: number, blue: number, alpha?: number }} The RGBA representation
+ */
+function hslaToRgba(color) {
+  if (!color) return { red: 0, green: 0, blue: 0 };
+  const { hue, saturation, lightness, alpha } = color;
+  const h = hue / 360;
+  const s = saturation / 100;
+  const l = lightness / 100;
+  var r, g, b;
+
+  if (s == 0) {
+    r = g = b = l; // achromatic
+  } else {
+    var hue2rgb = function hue2rgb(p, q, t) {
+      if (t < 0) t += 1;
+      if (t > 1) t -= 1;
+      if (t < 1 / 6) return p + (q - p) * 6 * t;
+      if (t < 1 / 2) return q;
+      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+      return p;
+    };
+
+    var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    var p = 2 * l - q;
+    r = hue2rgb(p, q, h + 1 / 3);
+    g = hue2rgb(p, q, h);
+    b = hue2rgb(p, q, h - 1 / 3);
+  }
+
+  return {
+    red: Math.round(r * 255),
+    green: Math.round(g * 255),
+    blue: Math.round(b * 255),
+    alpha
+  };
+}
+
+/**
+ * Converts an RGB color value to HSL. Conversion formula
+ * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
+ * returns hue is in the set of [0, 360], saturation, lightness and alpha are contained in the set [0, 100] and
+ * Assumes red, green and blue in the set [0, 255].
+ *
+ * @param {{ red: number, green: number, blue: number, alpha?: number }} color The RGBA representation
+ * @return {{ hue: number, saturation: number, lightness: number, alpha?: number }} The HSL color representation.
+ */
+function rgbaToHsla(color) {
+  if (!color) return rgbaToHsla({ red: 0, green: 0, blue: 0, alpha: 0 });
+  const { red, green, blue, alpha } = color;
+  const r = red / 255;
+  const g = green / 255;
+  const b = blue / 255;
+  var max = Math.max(r, g, b),
+    min = Math.min(r, g, b);
+  var h,
+    s,
+    l = (max + min) / 2;
+
+  if (max == min) {
+    h = s = 0; // achromatic
+  } else {
+    var d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r:
+        h = (g - b) / d + (g < b ? 6 : 0);
+        break;
+      case g:
+        h = (b - r) / d + 2;
+        break;
+      case b:
+        h = (r - g) / d + 4;
+        break;
+    }
+    h /= 6;
+  }
+
+  return {
+    hue: Math.floor(h * 360),
+    saturation: s * 100,
+    lightness: l * 100,
+    alpha
+  };
+}
+
 class SaturationAndLightnessMap extends Component {
   state = {
     mouseDown: false
@@ -30,9 +122,14 @@ class SaturationAndLightnessMap extends Component {
     this._refreshCanvas();
   }
 
+  componentWillUpdate() {
+    this._refreshCanvas();
+  }
+
   _refreshCanvas() {
     /** @type {CanvasRenderingContext2D} */
     const ctx = this.__ctx;
+    if (!ctx) return;
     const { saturation, lightness, hue } = this.props;
     for (let x = 0; x < 100; ++x) {
       for (let y = 0; y < 100; ++y) {
@@ -43,14 +140,14 @@ class SaturationAndLightnessMap extends Component {
     ctx.fillStyle = "transparent";
     ctx.strokeStyle = "rgba(255, 255, 255, 0.5)";
     ctx.beginPath();
-    ctx.arc(saturation, 100 - lightness, 3, 0, Math.PI * 2);
+    ctx.arc(saturation - 2, 100 - lightness - 2, 3, 0, Math.PI * 2);
     ctx.stroke();
     ctx.strokeStyle = "rgba(0, 0, 0, 0.5)";
     ctx.beginPath();
-    ctx.arc(saturation, 100 - lightness, 2, 0, Math.PI * 2);
+    ctx.arc(saturation - 2, 100 - lightness - 2, 2, 0, Math.PI * 2);
     ctx.stroke();
     ctx.beginPath();
-    ctx.arc(saturation, 100 - lightness, 4, 0, Math.PI * 2);
+    ctx.arc(saturation - 2, 100 - lightness - 2, 4, 0, Math.PI * 2);
     ctx.stroke();
   }
 
@@ -130,7 +227,6 @@ class HueMap extends Component {
   };
 
   onMouseDown = event => {
-    console.log(event.button);
     if (event.button === 0) {
       this.setState({ mouseDown: true });
     }
@@ -237,42 +333,36 @@ class AlphaMap extends Component {
 
 class RgbaColorForm extends Component {
   onRedChange = event => {
-    const { onChange, h, l, s, g, b, a } = this.props;
-    onChange(
-      h,
-      l,
-      s,
-      Math.min(255, Math.max(0, Number(event.target.value))),
-      g,
-      b,
-      a
-    );
+    const { onChange, g, b, a } = this.props;
+    const r = Math.min(255, Math.max(0, Number(event.target.value)));
+    const { hue: h, lightness: l, saturation: s } = rgbaToHsla({
+      red: r,
+      green: g,
+      blue: b
+    });
+    onChange(h, l, s, r, g, b, a);
   };
 
   onBlueChange = event => {
-    const { onChange, h, l, s, r, g, a } = this.props;
-    onChange(
-      h,
-      l,
-      s,
-      r,
-      g,
-      Math.min(255, Math.max(0, Number(event.target.value))),
-      a
-    );
+    const { onChange, r, g, a } = this.props;
+    const b = Math.min(255, Math.max(0, Number(event.target.value)));
+    const { hue: h, lightness: l, saturation: s } = rgbaToHsla({
+      red: r,
+      green: g,
+      blue: b
+    });
+    onChange(h, l, s, r, g, b, a);
   };
 
   onGreenChange = event => {
-    const { onChange, h, l, s, r, b, a } = this.props;
-    onChange(
-      h,
-      l,
-      s,
-      r,
-      Math.min(255, Math.max(0, Number(event.target.value))),
-      b,
-      a
-    );
+    const { onChange, r, b, a } = this.props;
+    const g = Math.min(255, Math.max(0, Number(event.target.value)));
+    const { hue: h, lightness: l, saturation: s } = rgbaToHsla({
+      red: r,
+      green: g,
+      blue: b
+    });
+    onChange(h, l, s, r, g, b, a);
   };
 
   onAlphaChange = event => {
@@ -383,6 +473,15 @@ class ColorForm extends Component {
   }
 }
 
+class ColorPreview extends Component {
+  render() {
+    const { color } = this.props;
+    const a = typeof color.alpha === "number" ? color.alpha : 100;
+    const bg = `rgba(${color.red}, ${color.green}, ${color.blue}, ${a / 100})`;
+    return <div className="sn-color-preview" style={{ background: bg }} />;
+  }
+}
+
 class FormColorInput extends Component {
   static propTypes = {
     value: PropTypes.oneOfType([
@@ -411,7 +510,9 @@ class FormColorInput extends Component {
     hueLabel: PropTypes.node,
     saturationLabel: PropTypes.node,
     lightnessLabel: PropTypes.node,
-    alphaLabel: PropTypes.node
+    alphaLabel: PropTypes.node,
+    previousLabel: PropTypes.node,
+    currentLabel: PropTypes.node
   };
 
   static defaultProps = {
@@ -430,7 +531,9 @@ class FormColorInput extends Component {
     hueLabel: "H",
     saturationLabel: "S",
     lightnessLabel: "L",
-    alphaLabel: "A"
+    alphaLabel: "A",
+    currentLabel: "Current",
+    previousLabel: "Previous"
   };
 
   constructor(props) {
@@ -451,10 +554,10 @@ class FormColorInput extends Component {
     let rgba, hsla;
     if (this.colorIsRgba(color)) {
       rgba = color;
-      hsla = this.rgbaToHsla(color);
+      hsla = rgbaToHsla(color);
     } else {
       hsla = color;
-      rgba = this.hslaToRgba(color);
+      rgba = hslaToRgba(color);
     }
     return {
       rgba,
@@ -466,98 +569,6 @@ class FormColorInput extends Component {
       h: hsla.hue,
       s: hsla.saturation,
       l: hsla.lightness
-    };
-  }
-
-  /**
-   * Converts an HSL color value to RGB. Conversion formula
-   * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
-   * Assumes hue is in the set of [0, 360], saturation, lightness and alpha are contained in the set [0, 100] and
-   * returns red, green and blue in the set [0, 255].
-   *
-   * @param   {{ hue: number, saturation: number, lightness: number, alpha?: number }} color The HSL color value.
-   * @return  {{ red: number, green: number, blue: number, alpha?: number }} The RGBA representation
-   */
-  hslaToRgba(color) {
-    if (!color) return { red: 0, green: 0, blue: 0 };
-    const { hue, saturation, lightness, alpha } = color;
-    const h = hue / 360;
-    const s = saturation / 100;
-    const l = lightness / 100;
-    var r, g, b;
-
-    if (s == 0) {
-      r = g = b = l; // achromatic
-    } else {
-      var hue2rgb = function hue2rgb(p, q, t) {
-        if (t < 0) t += 1;
-        if (t > 1) t -= 1;
-        if (t < 1 / 6) return p + (q - p) * 6 * t;
-        if (t < 1 / 2) return q;
-        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-        return p;
-      };
-
-      var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-      var p = 2 * l - q;
-      r = hue2rgb(p, q, h + 1 / 3);
-      g = hue2rgb(p, q, h);
-      b = hue2rgb(p, q, h - 1 / 3);
-    }
-
-    return {
-      red: Math.round(r * 255),
-      green: Math.round(g * 255),
-      blue: Math.round(b * 255),
-      alpha
-    };
-  }
-
-  /**
-   * Converts an RGB color value to HSL. Conversion formula
-   * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
-   * returns hue is in the set of [0, 360], saturation, lightness and alpha are contained in the set [0, 100] and
-   * Assumes red, green and blue in the set [0, 255].
-   *
-   * @param {{ red: number, green: number, blue: number, alpha?: number }} color The RGBA representation
-   * @return {{ hue: number, saturation: number, lightness: number, alpha?: number }} The HSL color representation.
-   */
-  rgbaToHsla(color) {
-    if (!color) return this.rgbaToHsla({ red: 0, green: 0, blue: 0, alpha: 0 });
-    const { red, green, blue, alpha } = color;
-    const r = red / 255;
-    const g = green / 255;
-    const b = blue / 255;
-    var max = Math.max(r, g, b),
-      min = Math.min(r, g, b);
-    var h,
-      s,
-      l = (max + min) / 2;
-
-    if (max == min) {
-      h = s = 0; // achromatic
-    } else {
-      var d = max - min;
-      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-      switch (max) {
-        case r:
-          h = (g - b) / d + (g < b ? 6 : 0);
-          break;
-        case g:
-          h = (b - r) / d + 2;
-          break;
-        case b:
-          h = (r - g) / d + 4;
-          break;
-      }
-      h /= 6;
-    }
-
-    return {
-      hue: Math.floor(h * 360),
-      saturation: s * 100,
-      lightness: l * 100,
-      alpha
     };
   }
 
@@ -627,7 +638,7 @@ class FormColorInput extends Component {
       if (this.colorIsRgba(value)) {
         return onChange(color);
       }
-      return onChange(this.rgbaToHsla(color));
+      return onChange(rgbaToHsla(color));
     }
     const newState = this.getNewColorState(color);
     newState.modalOpen = false;
@@ -641,7 +652,7 @@ class FormColorInput extends Component {
       lightness: Math.max(0, Math.min(100, lightness)),
       alpha: this.state.a
     };
-    const rgba = this.hslaToRgba(hsla);
+    const rgba = hslaToRgba(hsla);
     this.updateColorModalState(hsla, rgba);
   };
 
@@ -652,7 +663,7 @@ class FormColorInput extends Component {
       lightness: this.state.l,
       alpha: this.state.a
     };
-    const rgba = this.hslaToRgba(hsla);
+    const rgba = hslaToRgba(hsla);
     this.updateColorModalState(hsla, rgba);
   };
 
@@ -663,7 +674,7 @@ class FormColorInput extends Component {
       lightness: this.state.l,
       alpha: alpha
     };
-    const rgba = this.hslaToRgba(hsla);
+    const rgba = hslaToRgba(hsla);
     this.updateColorModalState(hsla, rgba);
   };
 
@@ -700,7 +711,9 @@ class FormColorInput extends Component {
       disabled,
       cancelLabel,
       acceptLabel,
-      showAlpha
+      showAlpha,
+      currentLabel,
+      previousLabel
     } = this.props;
     const colorString = this.colorToString(rgba);
     return (
@@ -736,6 +749,21 @@ class FormColorInput extends Component {
                   onChange={this.onAlphaChange}
                 />
               ) : null}
+              <VerticalLayout
+                justify="center"
+                selfAlign="start"
+                align="center"
+                margin={{ left: "15px" }}
+              >
+                <FormLabel>{currentLabel}</FormLabel>
+                <VerticalLayout className="sn-color-preview-wrapper">
+                  <ColorPreview
+                    color={{ red: r, green: g, blue: b, alpha: a }}
+                  />
+                  <ColorPreview color={rgba} />
+                </VerticalLayout>
+                <FormLabel>{previousLabel}</FormLabel>
+              </VerticalLayout>
             </HorizontalLayout>
           </HorizontalLayout>
           <ColorForm

@@ -34,7 +34,19 @@ class Modal extends Component {
     closeOnBackgroundClick: false
   };
 
+  onContainerRef = ref => {
+    if (this.__ref) {
+      this.__ref.removeEventListener("mousewheel", this.stopPropagation);
+      this.__ref = null;
+    }
+    if (ref) {
+      ref.addEventListener("mousewheel", this.stopPropagation);
+      this.__ref = ref;
+    }
+  };
+
   stopPropagation(event) {
+    console.log("STOP!");
     event.stopPropagation();
   }
   render() {
@@ -51,7 +63,12 @@ class Modal extends Component {
     return (
       <div
         className={classes}
-        onClick={closeOnBackgroundClick ? onClose : undefined}
+        onClick={closeOnBackgroundClick ? onClose : this.stopPropagation}
+        onScroll={this.stopPropagation}
+        onWheel={this.stopPropagation}
+        onMouseDown={this.stopPropagation}
+        onMouseUp={this.stopPropagation}
+        ref={this.onContainerRef}
       >
         <div className="sn-modal" onClick={this.stopPropagation}>
           {title || onClose ? (

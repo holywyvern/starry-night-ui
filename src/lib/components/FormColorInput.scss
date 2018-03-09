@@ -150,3 +150,12 @@
     border: 1px solid rgba(0, 0, 0, 0.5);
   }
 }
+.sn-color-preview-wrapper {
+  box-sizing: content-box;
+  @include checker-bg;
+  border: 2px solid var(--sn-primary-light-border-color);
+}
+.sn-color-preview {
+  width: 48px;
+  height: 28px;
+}
